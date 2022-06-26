@@ -6,7 +6,7 @@ type Props = {
   theme?: Dict;
 };
 
-const Provider = ({ children, theme = undefined }: Props) => (
+const Provider = ({ children, theme }: Props) => (
   <ChakraProvider theme={theme}>{children}</ChakraProvider>
 );
 

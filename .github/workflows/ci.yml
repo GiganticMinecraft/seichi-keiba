@@ -11,6 +11,8 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+      - name: Install deps
+        run: yarn install
       - name: Run eslint-config-prettier
         run: yarn lint:conflict
       - name: Run ESLint
@@ -26,5 +28,7 @@ jobs:
         with:
           node-version: 16
           cache: yarn
+      - name: Install deps
+        run: yarn install
       - name: Build
         run: yarn build

@@ -1,8 +1,9 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from '@/app';
-import ChakraProvider from '@/containers/chakraProvider';
+import Layout from '@/components/pages/layout';
+import SiteRoutes from '@/siteRoutes';
 
 // eslint-disable-next-line import/no-unresolved
 import 'windi.css';
@@ -11,7 +12,9 @@ import 'windi.css';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ChakraProvider>
-      <App />
+      <Layout>
+        <SiteRoutes />
+      </Layout>
     </ChakraProvider>
   </React.StrictMode>,
 );

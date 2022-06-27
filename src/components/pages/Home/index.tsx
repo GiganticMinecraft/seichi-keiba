@@ -10,7 +10,7 @@ import paths from '@/paths';
 
 import Home from './presenter';
 
-import type { MenuItem } from './Menu';
+import type { MenuItem } from '../../common/Menu';
 
 const playersMenuItems: MenuItem[] = [
   {

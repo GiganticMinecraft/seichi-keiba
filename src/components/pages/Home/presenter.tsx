@@ -1,6 +1,6 @@
+import Menu, { MenuItem } from '@/components/common/Menu';
 import H2 from '@/components/common/heading/h2';
 
-import Menu, { MenuItem } from './Menu';
 import NewsList from './NewsList';
 
 type Props = {

@@ -3,8 +3,8 @@ import { BrowserRouter, RouteObject, useRoutes } from 'react-router-dom';
 import NotFound from '@/components/pages/404';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/pages/Layout';
-
-import paths from './paths';
+import Votes from '@/components/pages/Votes';
+import paths from '@/paths';
 
 const baseRoutes: RouteObject[] = [
   {
@@ -16,7 +16,7 @@ const baseRoutes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <p>index!</p>,
+        element: <Votes />,
       },
       {
         path: paths.votes.normal,

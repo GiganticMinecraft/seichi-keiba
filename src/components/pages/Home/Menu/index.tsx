@@ -2,6 +2,8 @@ import { Button, Grid, Icon, GridItem, Text, Link } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import { Link as ReactLink } from 'react-router-dom';
 
+import paths from '@/paths';
+
 export type MenuItem = {
   title: string;
   color: string;
@@ -23,7 +25,7 @@ const Menu: React.FCX<Props> = ({ menuItems, className }) => (
       <GridItem rowSpan={2} key={item.title}>
         <Link
           as={ReactLink}
-          to={item.to ?? '/'}
+          to={item.to ?? paths.home}
           _hover={{ textDecoration: 'none' }}
           _focus={{ textDecoration: 'none' }}
         >

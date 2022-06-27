@@ -16,11 +16,11 @@ const Home = ({ playersMenuItems, adminMenuItems, isAdmin = false }: Props) => (
     <H2>お知らせ</H2>
     <NewsList className="mt-2" />
     <H2>メニュー</H2>
-    <Menu menuItems={playersMenuItems} className={menuLayouts} />
+    <Menu items={playersMenuItems} className={menuLayouts} />
     {isAdmin && (
       <>
         <H2>管理者メニュー</H2>
-        <Menu menuItems={adminMenuItems} className={menuLayouts} />
+        <Menu items={adminMenuItems} className={menuLayouts} />
       </>
     )}
   </>

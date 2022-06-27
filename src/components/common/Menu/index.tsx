@@ -12,10 +12,10 @@ export type MenuItem = {
 };
 
 type Props = {
-  menuItems: MenuItem[];
+  items: MenuItem[];
 };
 
-const Menu: React.FCX<Props> = ({ menuItems, className }) => (
+const Menu: React.FCX<Props> = ({ items: menuItems, className }) => (
   <Grid
     gap={4}
     templateColumns={{ md: 'repeat(2, 1fr)' }}

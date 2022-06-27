@@ -1,16 +1,19 @@
 import { Container } from '@chakra-ui/react';
-import { Outlet } from 'react-router-dom';
 
 import Header from '@/components/common/Header';
 
-const Layout = () => (
+type Props = {
+  children: React.ReactNode;
+};
+
+const Layout = ({ children }: Props) => (
   <>
     <Header />
     <Container
       maxW={['container.sm', 'container.md', 'container.lg', 'container.xl']}
       py={4}
     >
-      <Outlet />
+      {children}
     </Container>
   </>
 );

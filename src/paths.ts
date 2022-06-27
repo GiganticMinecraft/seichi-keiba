@@ -1,6 +1,16 @@
 const paths = {
   home: '/',
-  vote: 'vote',
+  votes: {
+    index: 'votes',
+    normal: 'normal',
+    odds: 'odds',
+  },
+  show: {
+    index: 'show',
+    votes: 'votes',
+    races: 'races',
+    account: 'account',
+  },
 };
 
 export default paths;

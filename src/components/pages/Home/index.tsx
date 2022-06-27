@@ -6,6 +6,7 @@ const EnhancedHome = () => (
   <Home
     playersMenuItems={playersVote.concat(playersShow)}
     adminMenuItems={admins}
+    isAdmin
   />
 );
 

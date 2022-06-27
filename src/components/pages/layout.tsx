@@ -1,3 +1,5 @@
+import { Container } from '@chakra-ui/react';
+
 import Header from '@/components/common/header';
 
 type Props = {
@@ -7,7 +9,12 @@ type Props = {
 const Layout = ({ children }: Props) => (
   <>
     <Header />
-    {children}
+    <Container
+      maxW={['container.sm', 'container.md', 'container.lg', 'container.xl']}
+      py="4"
+    >
+      {children}
+    </Container>
   </>
 );
 

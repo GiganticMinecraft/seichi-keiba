@@ -11,7 +11,7 @@ const Layout = ({ children }: Props) => (
     <Header />
     <Container
       maxW={['container.sm', 'container.md', 'container.lg', 'container.xl']}
-      py="4"
+      py={4}
     >
       {children}
     </Container>

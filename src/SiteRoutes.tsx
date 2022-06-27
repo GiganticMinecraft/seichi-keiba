@@ -23,6 +23,10 @@ const baseRoutes: RouteObject[] = [
         path: paths.votes.normal,
         element: <p>normal!</p>,
       },
+      {
+        path: paths.votes.odds,
+        element: <p>odds!</p>,
+      },
     ],
   },
   {

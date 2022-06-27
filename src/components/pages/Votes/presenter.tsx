@@ -4,6 +4,6 @@ type Props = {
   items: MenuItem[];
 };
 
-const Votes = ({ items }: Props) => <Menu items={items} />;
+const Admins = ({ items }: Props) => <Menu items={items} />;
 
-export default Votes;
+export default Admins;

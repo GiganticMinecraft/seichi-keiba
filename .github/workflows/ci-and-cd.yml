@@ -1,4 +1,4 @@
-name: CI
+name: CI and CD
 on:
   push:
 jobs:
@@ -31,3 +31,21 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
+      - uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ./dist/
+  deploy:
+    name: Deploy on main
+    runs-on: ubuntu-latest
+    needs: ["lint-and-test", "build"]
+    if: ${{ github.ref == 'refs/heads/main' }}
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist

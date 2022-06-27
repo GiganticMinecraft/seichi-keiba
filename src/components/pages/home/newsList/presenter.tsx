@@ -24,7 +24,7 @@ const NewsList: React.FCX<Props> = ({
     {newsList.length ? (
       <Accordion defaultIndex={[0]} allowMultiple>
         {newsList.map((news) => (
-          <AccordionItem>
+          <AccordionItem key={news.title}>
             <h3>
               <AccordionButton>
                 <Box flex={1} textAlign="left">
@@ -35,7 +35,7 @@ const NewsList: React.FCX<Props> = ({
             </h3>
             <AccordionPanel pb={4}>
               {news.contents.map((str) => (
-                <Text>{str}</Text>
+                <Text key={str}>{str}</Text>
               ))}
             </AccordionPanel>
           </AccordionItem>

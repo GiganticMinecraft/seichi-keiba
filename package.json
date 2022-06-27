@@ -10,7 +10,8 @@
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
     "format:fix": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
-    "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'"
+    "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
+    "postinstall": "typesync || :"
   },
   "dependencies": {
     "@chakra-ui/react": "2.2.1",
@@ -24,6 +25,8 @@
     "react-router-dom": "6.3.0"
   },
   "devDependencies": {
+    "@types/eslint": "^8.4.3",
+    "@types/prettier": "^2.6.3",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
@@ -41,6 +44,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^2.7.1",
     "typescript": "^4.6.3",
+    "typesync": "^0.9.1",
     "vite": "^2.9.9",
     "vite-plugin-windicss": "^1.8.5",
     "vite-tsconfig-paths": "^3.5.0"

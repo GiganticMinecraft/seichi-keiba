@@ -1939,9 +1939,9 @@ eslint-import-resolver-node@^0.3.6:
     resolve "^1.20.0"
 
 eslint-import-resolver-typescript@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.1.0.tgz#c2d244ad9285a27470959743ed55297748ee8ee4"
-  integrity sha512-sWRwY40hH3YKZL4eMbXHKAbmnoN+CQ/XoehVX4POeJYhaM0zKf/HZC3qzvYcA9mdaTD/63H7NSRMujTkFgvUXw==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-import-resolver-typescript/-/eslint-import-resolver-typescript-3.1.1.tgz#9a3e4b9260a39608b7e42fd12190f19f9913fcc3"
+  integrity sha512-rnC7s69VAXeg3RVhPIhiX8M/fHiPaDyK8zqw8wUDYy34weWQcfyvN5sw/74HhGKiv/teD+BF8bQMZthoyrWTvA==
   dependencies:
     debug "^4.3.4"
     enhanced-resolve "^5.9.3"
@@ -2327,9 +2327,9 @@ get-symbol-description@^1.0.0:
     get-intrinsic "^1.1.1"
 
 get-tsconfig@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.0.6.tgz#31ee086022b1261fccf89cfc7460db0f3c02fa57"
-  integrity sha512-yK9g+lk9PSaYS4RM9jnlmFSyymNDdLaIk42h6uOO6DOvqKEpL4KhUAcI1/7/sWe8+FWZe1/EjFXFfvv6T+cgPA==
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/get-tsconfig/-/get-tsconfig-4.0.7.tgz#fa6314dfdd43f693605379e9f4717332d5f93e46"
+  integrity sha512-hI0ikvRti9TmxszXtfRaVxSU0yQ2HJK03MU14dG/exX/RrELbMTYJW0xOzGR6c2FsddZ3eZHZxDotEIPOw4D+A==
 
 glob-parent@^5.1.2:
   version "5.1.2"
@@ -3659,9 +3659,9 @@ vite-tsconfig-paths@^3.5.0:
     tsconfig-paths "^4.0.0"
 
 vite@^2.9.9:
-  version "2.9.12"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.12.tgz#b1d636b0a8ac636afe9d83e3792d4895509a941b"
-  integrity sha512-suxC36dQo9Rq1qMB2qiRorNJtJAdxguu5TMvBHOc/F370KvqAe9t48vYp+/TbPKRNrMh/J55tOUmkuIqstZaew==
+  version "2.9.13"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.9.13.tgz#859cb5d4c316c0d8c6ec9866045c0f7858ca6abc"
+  integrity sha512-AsOBAaT0AD7Mhe8DuK+/kE4aWYFMx/i0ZNi98hJclxb4e0OhQcZYUrvLjIaQ8e59Ui7txcvKMiJC1yftqpQoDw==
   dependencies:
     esbuild "^0.14.27"
     postcss "^8.4.13"

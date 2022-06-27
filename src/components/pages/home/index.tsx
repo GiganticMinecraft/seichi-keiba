@@ -1,3 +1,5 @@
-const Home = () => <p>aiueo</p>;
+import Home from './presenter';
 
-export default Home;
+const EnhancedHome = () => <Home />;
+
+export default EnhancedHome;

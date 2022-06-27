@@ -118,14 +118,12 @@ module.exports = {
     'react/jsx-props-no-spreading': [
       'error',
       {
-        html: 'enforce',
-        custom: 'enforce',
-        explicitSpread: 'ignore',
+        custom: 'ignore',
       },
     ],
     'react/react-in-jsx-scope': 'off',
     'react/function-component-definition': 'off',
-    "react/require-default-props": "off"
+    'react/require-default-props': 'off',
   },
   overrides: [
     {

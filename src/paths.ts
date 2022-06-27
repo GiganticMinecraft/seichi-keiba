@@ -11,6 +11,11 @@ const paths = {
     races: 'races',
     account: 'account',
   },
+  admins: {
+    index: 'admins',
+    votes: 'votes',
+    races: 'races',
+  },
 };
 
 export default paths;

@@ -50,10 +50,12 @@ export const admins: MenuItem[] = [
     title: '投票内容照会',
     color: 'green',
     iconType: MdOutlineHowToVote,
+    to: `${paths.admins.index}/${paths.admins.votes}`,
   },
   {
     title: 'レース情報登録',
     color: 'green',
     iconType: MdOutlineHowToVote,
+    to: `${paths.admins.index}/${paths.admins.races}`,
   },
 ];

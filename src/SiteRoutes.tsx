@@ -1,6 +1,7 @@
 import { BrowserRouter, RouteObject, useRoutes } from 'react-router-dom';
 
 import NotFound from '@/components/pages/404';
+import Admins from '@/components/pages/Admins';
 import Home from '@/components/pages/Home';
 import Layout from '@/components/pages/Layout';
 import Show from '@/components/pages/Show';
@@ -47,6 +48,23 @@ const baseRoutes: RouteObject[] = [
       {
         path: paths.show.account,
         element: <p>account!</p>,
+      },
+    ],
+  },
+  {
+    path: paths.admins.index,
+    children: [
+      {
+        index: true,
+        element: <Admins />,
+      },
+      {
+        path: paths.admins.votes,
+        element: <p>votes!</p>,
+      },
+      {
+        path: paths.admins.races,
+        element: <p>races!</p>,
       },
     ],
   },

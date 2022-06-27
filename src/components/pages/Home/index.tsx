@@ -8,7 +8,7 @@ import {
 
 import Home from './presenter';
 
-import type { MenuItem } from './menu';
+import type { MenuItem } from './Menu';
 
 const playersMenuItems: MenuItem[] = [
   {

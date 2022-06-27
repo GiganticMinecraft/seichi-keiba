@@ -1,7 +1,7 @@
 import H2 from '@/components/common/heading/h2';
 
-import Menu, { MenuItem } from './menu';
-import NewsList from './newsList';
+import Menu, { MenuItem } from './Menu';
+import NewsList from './NewsList';
 
 type Props = {
   playersMenuItems: MenuItem[];

@@ -1,4 +1,4 @@
-import { Heading } from '@chakra-ui/react';
+import H2 from '@/components/common/heading/h2';
 
 import Menu, { MenuItem } from './menu';
 import NewsList from './newsList';
@@ -13,24 +13,13 @@ const menuLayouts = 'mt-4 px-0 md:px-10';
 
 const Home = ({ playersMenuItems, adminMenuItems, isAdmin = false }: Props) => (
   <>
-    <Heading as="h2" textAlign="center" size={{ base: 'md', xl: 'xl' }} my={2}>
-      お知らせ
-    </Heading>
+    <H2>お知らせ</H2>
     <NewsList className="mt-2" />
-    <Heading as="h2" textAlign="center" size={{ base: 'md', xl: 'xl' }} my={2}>
-      メニュー
-    </Heading>
+    <H2>メニュー</H2>
     <Menu menuItems={playersMenuItems} className={menuLayouts} />
     {isAdmin && (
       <>
-        <Heading
-          as="h2"
-          textAlign="center"
-          size={{ base: 'md', xl: 'xl' }}
-          my={2}
-        >
-          管理者メニュー
-        </Heading>
+        <H2>管理者メニュー</H2>
         <Menu menuItems={adminMenuItems} className={menuLayouts} />
       </>
     )}

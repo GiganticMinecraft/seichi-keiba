@@ -3,7 +3,7 @@ import H2 from '@/components/common/heading/h2';
 import { playersVote } from '@/data/menuItems';
 import paths from '@/paths';
 
-import Admins from './presenter';
+import Votes from './presenter';
 
 const items: MenuItem[] = playersVote.map((item) => {
   const newItem: MenuItem = {
@@ -17,7 +17,7 @@ const items: MenuItem[] = playersVote.map((item) => {
 const EnhancedVotes = () => (
   <>
     <H2>投票メニュー</H2>
-    <Admins items={items} />
+    <Votes items={items} />
   </>
 );
 

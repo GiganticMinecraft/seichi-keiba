@@ -14,11 +14,11 @@ const items: MenuItem[] = admins.map((item) => {
   return newItem;
 });
 
-const EnhancedVotes = () => (
+const EnhancedAdmins = () => (
   <>
     <H2>管理者メニュー</H2>
     <Admins items={items} />
   </>
 );
 
-export default EnhancedVotes;
+export default EnhancedAdmins;

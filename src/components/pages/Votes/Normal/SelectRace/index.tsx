@@ -1,6 +1,6 @@
 import { CourseTypes, race } from '@/types/race';
 
-import RaceRadio from './presenter';
+import SelectRace from './presenter';
 
 // TODO: receive props or context!
 const data: race.Race[] = [
@@ -13,6 +13,6 @@ const data: race.Race[] = [
   },
 ];
 
-const EnhancedRaceRadio = () => <RaceRadio races={data} />;
+const EnhancedSelectRace = () => <SelectRace races={data} />;
 
-export default EnhancedRaceRadio;
+export default EnhancedSelectRace;

@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import isNaturalNumber from 'is-natural-number';
 
 export abstract class AbstractValueObject<T> {

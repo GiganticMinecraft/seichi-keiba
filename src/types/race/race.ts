@@ -1,3 +1,4 @@
+/* eslint-disable max-classes-per-file */
 import { CourseType } from './courseType';
 
 import { NaturalNumberValueObject, StringValueObject } from '../valueObject';

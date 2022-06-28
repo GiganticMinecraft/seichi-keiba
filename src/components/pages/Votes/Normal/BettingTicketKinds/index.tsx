@@ -1,17 +1,22 @@
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react';
+import { Field } from 'formik';
 
 import { BettingTicket } from '@/types/race';
 
-const BettingTicketKinds = () => {
+type Props = {
+  formStateName: string;
+};
+
+const BettingTicketKinds = ({ formStateName }: Props) => {
   const tickets = Object.values(BettingTicket);
 
   return (
-    <RadioGroup>
+    <RadioGroup name={formStateName}>
       <Stack direction="row" spacing={4}>
         {tickets.map((ticket) => (
-          <Radio key={ticket} value={ticket}>
+          <Field as={Radio} key={ticket} value={ticket}>
             {ticket}
-          </Radio>
+          </Field>
         ))}
       </Stack>
     </RadioGroup>

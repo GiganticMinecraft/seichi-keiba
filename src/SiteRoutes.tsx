@@ -6,6 +6,7 @@ import Home from '@/components/pages/Home';
 import Layout from '@/components/pages/Layout';
 import Show from '@/components/pages/Show';
 import Votes from '@/components/pages/Votes';
+import NormalVotes from '@/components/pages/Votes/Normal';
 import paths from '@/paths';
 
 const baseRoutes: RouteObject[] = [
@@ -22,7 +23,7 @@ const baseRoutes: RouteObject[] = [
       },
       {
         path: paths.votes.normal,
-        element: <p>normal!</p>,
+        element: <NormalVotes />,
       },
       {
         path: paths.votes.odds,

@@ -1,5 +1,6 @@
 /* eslint-disable max-classes-per-file */
 import { CourseType } from './courseType';
+import { RaceHorse } from './horse';
 
 import { NaturalNumberValueObject, StringValueObject } from '../valueObject';
 
@@ -23,4 +24,5 @@ export type Race = {
   startDateTime: Date;
   course: CourseType;
   distance: RaceDistance;
+  horses: RaceHorse[];
 };

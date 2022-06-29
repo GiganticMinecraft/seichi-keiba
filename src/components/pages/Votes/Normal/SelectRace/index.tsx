@@ -10,6 +10,7 @@ const data: race.Race[] = [
     startDateTime: new Date(),
     distance: race.RaceDistance.of(2000),
     course: CourseTypes.Dirt,
+    horses: [],
   },
   {
     number: race.RaceNumber.of(10),
@@ -17,6 +18,7 @@ const data: race.Race[] = [
     startDateTime: new Date(),
     distance: race.RaceDistance.of(1000),
     course: CourseTypes.Turf,
+    horses: [],
   },
   {
     number: race.RaceNumber.of(11),
@@ -24,6 +26,7 @@ const data: race.Race[] = [
     startDateTime: new Date(),
     distance: race.RaceDistance.of(1000),
     course: CourseTypes.Jump,
+    horses: [],
   },
 ];
 

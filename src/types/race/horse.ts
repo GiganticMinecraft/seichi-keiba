@@ -1,5 +1,4 @@
 import { Jockey } from './jockey';
-import Odds from './odds';
 
 import { StringValueObject } from '../valueObject';
 
@@ -17,5 +16,4 @@ export type RaceHorse = Horse & {
   frame: number;
   number: number;
   jockey: Jockey;
-  odds: Odds;
 };

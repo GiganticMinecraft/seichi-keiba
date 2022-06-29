@@ -1,4 +1,4 @@
-import BettingTicket from './BettingTicket';
+import BettingTicket from './bettingTicket';
 import { CourseTypes } from './courseType';
 import * as horse from './horse';
 import * as jockey from './jockey';

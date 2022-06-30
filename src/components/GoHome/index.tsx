@@ -1,13 +1,17 @@
-import { useRouter } from 'next/router';
+import { Button } from '@chakra-ui/react';
+import Link from 'next/link';
 
 import paths from '@/paths';
 
-import GoHome from './presenter';
+const GoHome = () => (
+  <Button
+    colorScheme="teal"
+    bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
+    color="white"
+    variant="solid"
+  >
+    <Link href={paths.home}>Go Home</Link>
+  </Button>
+);
 
-const EnhancedGoHome = () => {
-  const router = useRouter();
-
-  return <GoHome onClick={() => router.replace(paths.home)} />;
-};
-
-export default EnhancedGoHome;
+export default GoHome;

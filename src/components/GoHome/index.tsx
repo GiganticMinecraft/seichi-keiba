@@ -1,7 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import Link from 'next/link';
 
-import paths from '@/paths';
+import paths from '@/data/paths';
 
 const GoHome = () => (
   <Button

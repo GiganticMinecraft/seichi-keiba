@@ -1,7 +1,7 @@
 import { Box, Button, Heading, Link } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
-import paths from '@/paths';
+import paths from '@/data/paths';
 
 const Header = () => (
   <header>

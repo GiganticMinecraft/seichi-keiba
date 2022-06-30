@@ -1,6 +1,6 @@
 import { Box, Heading, Text } from '@chakra-ui/react';
 
-import GoHome from '@/components/GoHome';
+import GoHome from '@/components/common/GoHome';
 
 const NotFound = () => (
   <Box textAlign="center" py={10} px={6}>

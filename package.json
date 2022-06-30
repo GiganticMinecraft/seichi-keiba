@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "format:fix": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
+    "postinstall": "typesync || :"
   },
   "dependencies": {
     "next": "12.2.0",
@@ -14,11 +19,20 @@
     "react-dom": "18.2.0"
   },
   "devDependencies": {
+    "@types/eslint": "8.4.3",
     "@types/node": "18.0.0",
     "@types/react": "18.0.14",
     "@types/react-dom": "18.0.5",
+    "@typescript-eslint/eslint-plugin": "^5.30.0",
+    "@typescript-eslint/parser": "^5.30.0",
     "eslint": "8.18.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-next": "12.2.0",
-    "typescript": "4.7.4"
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-typescript": "^3.1.1",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "typescript": "4.7.4",
+    "typesync": "^0.9.1"
   }
 }

@@ -10,7 +10,9 @@ const GoHome = () => (
     color="white"
     variant="solid"
   >
-    <Link href={paths.home}>Go Home</Link>
+    <Link href={paths.home} replace>
+      Go Home
+    </Link>
   </Button>
 );
 

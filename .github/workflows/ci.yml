@@ -29,6 +29,7 @@ jobs:
           cache: yarn
       - name: Install deps
         run: yarn install
+      # ref. https://nextjs.org/docs/advanced-features/ci-build-caching#github-actions
       - name: Load Next.js cache
         uses: actions/cache@v3
         with:

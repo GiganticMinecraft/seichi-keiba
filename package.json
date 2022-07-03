@@ -26,7 +26,7 @@
     "react-icons": "4.4.0"
   },
   "devDependencies": {
-    "@types/eslint": "8.4.3",
+    "@types/eslint": "8.4.5",
     "@types/is-natural-number": "^4.0.1",
     "@types/node": "18.0.0",
     "@types/prettier": "^2.6.3",

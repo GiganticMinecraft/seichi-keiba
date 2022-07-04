@@ -25,6 +25,11 @@
 * [Vite](https://vitejs.dev)
   * ビルドツール
 
+### CSSについて
+
+* ChakraUIを基本
+* 一部コンポーネント化する際にWindiCSSを使用
+
 ### 開発を始める
 
 ```bash

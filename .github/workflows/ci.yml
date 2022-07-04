@@ -1,6 +1,13 @@
 name: CI
 on:
   push:
+    paths-ignore:
+      - CODEOWNERS
+      - LICENSE
+      - README.md
+      - renovate.json
+      - ".github/workflows/*.yml"
+      - "!.github/workflows/ci.yml"
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest

@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6" ,
+    "module": "commonjs" ,
+    "sourceMap": true ,
+    "outDir": "./dist" ,
+    "strict": true ,
+    "esModuleInterop": true ,
+    "skipLibCheck": true ,
+    "forceConsistentCasingInFileNames": true,
+    "composite": true,
+    "baseUrl": ".",
+    "rootDir": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared": ["../shared/src/index.ts"]
+    }
+  },
+  "references": [{
+    "path": "../shared"
+  }]
+}

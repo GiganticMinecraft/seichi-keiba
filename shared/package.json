@@ -1,0 +1,27 @@
+{
+  "name": "shared",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "codegen": "yarn codegen:client && yarn codegen:server",
+    "codegen:watch": "yarn codegen:client:watch & yarn codegen:server:watch",
+    "codegen:client": "graphql-codegen --config ./src/apollo/codegen-client.yml",
+    "codegen:client:watch": "yarn codegen:client --watch",
+    "codegen:server": "graphql-codegen --config ./src/apollo/codegen-server.yml",
+    "codegen:server:watch": "yarn codegen:server --watch"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "^3.1.1",
+    "@graphql-codegen/cli": "^2.6.4",
+    "@graphql-codegen/typed-document-node": "^2.2.13",
+    "@graphql-codegen/typescript": "^2.5.1",
+    "@graphql-codegen/typescript-operations": "^2.4.2",
+    "@graphql-codegen/typescript-resolvers": "^2.6.6",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@graphql-typed-document-node/core": "^3.1.1",
+    "graphql": "^16.5.0"
+  }
+}

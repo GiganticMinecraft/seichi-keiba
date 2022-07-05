@@ -1,0 +1,18 @@
+query getAllNews {
+  news {
+    id
+    title
+    contents
+    created_at
+    last_updated_at
+    closed_at
+  }
+}
+
+query getValidNews {
+  valid_news {
+    id
+    title
+    closed_at
+  }
+}

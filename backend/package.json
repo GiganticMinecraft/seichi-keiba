@@ -11,7 +11,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@GiganticMinecraft/seichi-keiba-shared": "*",
+    "@gigantic-minecraft/seichi-keiba-shared": "*",
     "apollo-server": "^3.1.1",
     "graphql": "^16.5.0"
   },

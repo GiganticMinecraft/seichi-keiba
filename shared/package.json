@@ -20,7 +20,13 @@
     "codegen:client": "graphql-codegen --config ./src/apollo/codegen-client.yml",
     "codegen:client:watch": "yarn codegen:client --watch",
     "codegen:server": "graphql-codegen --config ./src/apollo/codegen-server.yml",
-    "codegen:server:watch": "yarn codegen:server --watch"
+    "codegen:server:watch": "yarn codegen:server --watch",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "format:fix": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
+    "postinstall": "typesync || :"
   },
   "devDependencies": {
     "@graphql-codegen/add": "^3.1.1",
@@ -29,9 +35,19 @@
     "@graphql-codegen/typescript": "^2.5.1",
     "@graphql-codegen/typescript-operations": "^2.4.2",
     "@graphql-codegen/typescript-resolvers": "^2.6.6",
+    "@types/eslint": "^8.4.5",
+    "@types/prettier": "^2.6.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.2.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "prettier": "^2.7.1",
-    "typescript": "^4.7.4"
+    "typescript": "^4.7.4",
+    "typesync": "^0.9.1"
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.1.1",

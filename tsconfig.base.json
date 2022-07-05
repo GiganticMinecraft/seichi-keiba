@@ -10,6 +10,7 @@
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "moduleResolution": "node"
   },
 }

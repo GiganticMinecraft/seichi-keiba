@@ -5,6 +5,14 @@
     "backend",
     "shared"
   ],
+  "scripts": {
+    "codegen": "yarn workspace @gigantic-minecraft/seichi-keiba-shared codegen",
+    "codegen:watch": "yarn workspace @gigantic-minecraft/seichi-keiba-shared codegen:watch",
+    "build:shared": "yarn workspace @gigantic-minecraft/seichi-keiba-shared build",
+    "dev": "yarn build:shared && (yarn dev:backend & yarn dev:frontend)",
+    "dev:frontend": "yarn workspace frontend dev",
+    "dev:backend": "yarn workspace backend dev"
+  },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3"
   }

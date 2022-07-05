@@ -6,14 +6,10 @@
     "allowJs": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
     "composite": true,
     "useDefineForClassFields": true,
-    "outDir": "./dist",
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["./*"]
-    }
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true
   },
-  "include": ["src"],
 }

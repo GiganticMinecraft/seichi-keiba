@@ -1,16 +1,12 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "es6" ,
-    "module": "commonjs" ,
-    "sourceMap": true ,
-    "outDir": "./dist" ,
-    "strict": true ,
-    "esModuleInterop": true ,
-    "skipLibCheck": true ,
-    "forceConsistentCasingInFileNames": true,
-    "composite": true,
-    "baseUrl": ".",
-    "rootDir": ".",
-    "paths": {"@/*": ["./src/*"]}
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
+  "include": ["src"],
 }

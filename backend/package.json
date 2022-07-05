@@ -11,9 +11,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
+    "@GiganticMinecraft/seichi-keiba-shared": "*",
     "apollo-server": "^3.1.1",
-    "graphql": "^16.5.0",
-    "@GiganticMinecraft/seichi-keiba-shared": "*"
+    "graphql": "^16.5.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.5",

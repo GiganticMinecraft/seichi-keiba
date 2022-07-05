@@ -11,12 +11,6 @@
     "composite": true,
     "baseUrl": ".",
     "rootDir": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@shared": ["../shared/src/index.ts"]
-    }
+    "paths": {"@/*": ["./src/*"]}
   },
-  "references": [{
-    "path": "../shared"
-  }]
 }

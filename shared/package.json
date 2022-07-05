@@ -1,9 +1,20 @@
 {
-  "name": "shared",
+  "name": "@GiganticMinecraft/seichi-keiba-shared",
   "version": "0.1.0",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "./dist/**/*.d.ts",
+    "./dist/**/*.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GiganticMinecraft/seichi-keiba.git",
+    "directory": "shared"
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p ./tsconfig.json",
     "codegen": "yarn codegen:client && yarn codegen:server",
     "codegen:watch": "yarn codegen:client:watch & yarn codegen:server:watch",
     "codegen:client": "graphql-codegen --config ./src/apollo/codegen-client.yml",

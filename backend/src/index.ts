@@ -2,7 +2,10 @@ import { ApolloServer, gql } from "apollo-server";
 import { readFileSync } from "fs";
 import { join } from "path";
 
-import { serverSchema, asDateString } from "@shared";
+import {
+  serverSchema,
+  asDateString,
+} from "@GiganticMinecraft/seichi-keiba-shared";
 
 const path = join(process.cwd(), "../shared/src/apollo", "schema.graphql");
 const typeDefs = readFileSync(path).toString("utf-8");

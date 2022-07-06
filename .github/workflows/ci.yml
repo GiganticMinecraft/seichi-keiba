@@ -18,39 +18,9 @@ jobs:
       - name: Get node version from volta
         id: get-node-version
         uses: keita-hino/get-node-version-from-volta@eb5bfedc19c7a983377963749ff10f7e3f39fae4
-  lint-and-test:
+  build-shared:
     runs-on: ubuntu-latest
     needs: output-node-ver
-    strategy:
-      matrix:
-        workspace: [shared, backend, frontend]
-    defaults:
-      run:
-        working-directory: "./${{ matrix.workspace }}"
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{needs.output-node-ver.outputs.node-ver}}
-          cache: yarn
-      - name: Install deps
-        run: yarn install --frozen-lockfile
-      - name: Run eslint-config-prettier
-        run: yarn lint:conflict
-      - name: Run ESLint
-        run: yarn lint
-      - name: Run Prettier
-        run: yarn format
-      # TODO: Test
-  build:
-    runs-on: ubuntu-latest
-    needs: output-node-ver
-    strategy:
-      matrix:
-        workspace: [shared, backend, frontend]
-    defaults:
-      run:
-        working-directory: "./${{ matrix.workspace }}"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -60,12 +30,62 @@ jobs:
       - name: Install deps
         run: yarn install --frozen-lockfile
       - name: Generate codes in shared
-        working-directory: ./shared
         run: yarn codegen
       - name: Build shared package
-        if: matrix.workspace != shared
-        working-directory: ./shared
-        run: yarn build
+        run: yarn build:shared
+      - name: Upload files
+        uses: actions/upload-artifact@v3
+        with:
+          name: shared-artifacts
+          path: ./shared/dist
+  lint-and-test:
+    runs-on: ubuntu-latest
+    needs: build-shared
+    strategy:
+      matrix:
+        workspace: [shared, backend, frontend]
+    defaults:
+      run:
+        working-directory: "./${{ matrix.workspace }}"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{needs.output-node-ver.outputs.node-ver}}
+          cache: yarn
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+      - uses: actions/download-artifact@v3
+        with:
+          name: shared-artifacts
+          path: ../shared/dist
+      - name: Run eslint-config-prettier
+        run: yarn lint:conflict
+      - name: Run ESLint
+        run: yarn lint
+      - name: Run Prettier
+        run: yarn format
+      # TODO: Test
+  build:
+    runs-on: ubuntu-latest
+    needs: build-shared
+    strategy:
+      matrix:
+        workspace: [backend, frontend]
+    defaults:
+      run:
+        working-directory: "./${{ matrix.workspace }}"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{needs.output-node-ver.outputs.node-ver}}
+          cache: yarn
+      - name: Install deps
+        run: yarn install --frozen-lockfile
+      - uses: actions/download-artifact@v3
+        with:
+          name: shared-artifacts
+          path: ../shared/dist
       - name: Build
-        if: matrix.workspace == shared
         run: yarn build

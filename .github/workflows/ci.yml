@@ -50,6 +50,9 @@ jobs:
         with:
           node-version: ${{ env.node-ver }}
           cache: yarn
+      - run: |
+          mkdir -p ../shared/src/apollo/generated
+          mkdir -p ../shared/dist
       - uses: actions/download-artifact@v3
         with:
           name: graphql-artifacts

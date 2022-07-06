@@ -34,7 +34,7 @@ jobs:
           node-version: ${{needs.output-node-ver.outputs.node-ver}}
           cache: yarn
       - name: Install deps
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Run eslint-config-prettier
         run: yarn lint:conflict
       - name: Run ESLint
@@ -58,7 +58,7 @@ jobs:
           node-version: ${{needs.output-node-ver.outputs.node-ver}}
           cache: yarn
       - name: Install deps
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Generate codes in shared
         working-directory: ./shared
         run: yarn codegen

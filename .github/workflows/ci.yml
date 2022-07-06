@@ -25,7 +25,12 @@ jobs:
         run: yarn codegen
       - name: Build shared package
         run: yarn build:shared
-      - name: Upload files
+      - name: Upload generated GraphQL definitions
+        uses: actions/upload-artifact@v3
+        with:
+          name: graphql-artifacts
+          path: ./shared/src/apollo/generated
+      - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           name: shared-artifacts
@@ -45,6 +50,10 @@ jobs:
         with:
           node-version: ${{ env.node-ver }}
           cache: yarn
+      - uses: actions/download-artifact@v3
+        with:
+          name: graphql-artifacts
+          path: ../shared/src/apollo/generated
       - uses: actions/download-artifact@v3
         with:
           name: shared-artifacts

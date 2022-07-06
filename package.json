@@ -15,5 +15,9 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3"
+  },
+  "volta": {
+    "node": "16.15.1",
+    "yarn": "1.22.19"
   }
 }

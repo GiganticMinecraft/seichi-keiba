@@ -51,10 +51,6 @@ jobs:
           path: ../shared/dist
       - name: Install deps
         run: yarn install --frozen-lockfile
-      - name: debug
-        run: |
-          pwd
-          ls -la ../shared/dist
       - name: Run eslint-config-prettier
         run: yarn lint:conflict
       - name: Run ESLint

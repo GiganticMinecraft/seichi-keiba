@@ -16,9 +16,6 @@ jobs:
     strategy:
       matrix:
         workspace: [shared, backend, frontend]
-    defaults:
-      run:
-        working-directory: "./${{ matrix.workspace }}"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -28,10 +25,8 @@ jobs:
       - name: Install deps
         run: yarn install --frozen-lockfile
       - name: Generate codes in shared
-        working-directory: ../
         run: yarn codegen
       - name: Build shared package
-        working-directory: ../
         run: yarn build:shared
       - name: Run eslint-config-prettier
         run: yarn lint:conflict
@@ -45,9 +40,6 @@ jobs:
     strategy:
       matrix:
         workspace: [backend, frontend]
-    defaults:
-      run:
-        working-directory: "./${{ matrix.workspace }}"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -57,10 +49,8 @@ jobs:
       - name: Install deps
         run: yarn install --frozen-lockfile
       - name: Generate codes in shared
-        working-directory: ../
         run: yarn codegen
       - name: Build shared package
-        working-directory: ../
         run: yarn build:shared
       - name: Build
-        run: yarn build
+        run: yarn workspace ${{ matrix.workspace }} build

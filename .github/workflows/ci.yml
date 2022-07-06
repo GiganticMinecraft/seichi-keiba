@@ -11,33 +11,8 @@ on:
 env:
   node-ver: 16
 jobs:
-  build-shared:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.node-ver }}
-          cache: yarn
-      - name: Install deps
-        run: yarn install --frozen-lockfile
-      - name: Generate codes in shared
-        run: yarn codegen
-      - name: Build shared package
-        run: yarn build:shared
-      - name: Upload generated GraphQL definitions
-        uses: actions/upload-artifact@v3
-        with:
-          name: graphql-artifacts
-          path: ./shared/src/apollo/generated
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: shared-artifacts
-          path: ./shared/dist
   lint-and-test:
     runs-on: ubuntu-latest
-    needs: build-shared
     strategy:
       matrix:
         workspace: [shared, backend, frontend]
@@ -50,19 +25,14 @@ jobs:
         with:
           node-version: ${{ env.node-ver }}
           cache: yarn
-      - run: |
-          mkdir -p ../shared/src/apollo/generated
-          mkdir -p ../shared/dist
-      - uses: actions/download-artifact@v3
-        with:
-          name: graphql-artifacts
-          path: ../shared/src/apollo/generated
-      - uses: actions/download-artifact@v3
-        with:
-          name: shared-artifacts
-          path: ../shared/dist
       - name: Install deps
         run: yarn install --frozen-lockfile
+      - name: Generate codes in shared
+        working-directory: ../
+        run: yarn codegen
+      - name: Build shared package
+        working-directory: ../
+        run: yarn build:shared
       - name: Run eslint-config-prettier
         run: yarn lint:conflict
       - name: Run ESLint
@@ -85,11 +55,13 @@ jobs:
         with:
           node-version: ${{ env.node-ver }}
           cache: yarn
-      - uses: actions/download-artifact@v3
-        with:
-          name: shared-artifacts
-          path: ../shared/dist
       - name: Install deps
         run: yarn install --frozen-lockfile
+      - name: Generate codes in shared
+        working-directory: ../
+        run: yarn codegen
+      - name: Build shared package
+        working-directory: ../
+        run: yarn build:shared
       - name: Build
         run: yarn build

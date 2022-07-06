@@ -63,9 +63,9 @@ jobs:
         working-directory: ./shared
         run: yarn codegen
       - name: Build shared package
-        if: ${{ matrix.workspace }} != shared
+        if: matrix.workspace != shared
         working-directory: ./shared
         run: yarn build
       - name: Build
-        if: ${{ matrix.workspace }} == shared
+        if: matrix.workspace == shared
         run: yarn build

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workspace: [shared, backend, frontend]
+        workspace: ["@gigantic-minecraft/seichi-keiba-shared", backend, frontend]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -29,11 +29,11 @@ jobs:
       - name: Build shared package
         run: yarn build:shared
       - name: Run eslint-config-prettier
-        run: yarn lint:conflict
+        run: yarn workspace ${{ matrix.workspace }} lint:conflict
       - name: Run ESLint
-        run: yarn lint
+        run: yarn workspace ${{ matrix.workspace }} lint
       - name: Run Prettier
-        run: yarn format
+        run: yarn workspace ${{ matrix.workspace }} format
       # TODO: Test
   build:
     runs-on: ubuntu-latest

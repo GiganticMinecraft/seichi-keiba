@@ -1,18 +1,20 @@
+fragment newsDefaultFields on News {
+  id
+  title
+  contents
+  created_at
+  last_updated_at
+}
+
 query getAllNews {
   news {
-    id
-    title
-    contents
-    created_at
-    last_updated_at
-    closed_at
+    ...newsDefaultFields
   }
 }
 
 query getValidNews {
   valid_news {
-    id
-    title
-    closed_at
+    ...newsDefaultFields
+    last_updated_at
   }
 }

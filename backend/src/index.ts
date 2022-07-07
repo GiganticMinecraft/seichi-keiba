@@ -1,7 +1,7 @@
 import {
   serverSchema,
   asDateString,
-} from '@gigantic-minecraft/seichi-keiba-shared';
+} from '@giganticminecraft/seichi-keiba-shared';
 import { ApolloServer } from 'apollo-server';
 import { readFileSync } from 'fs';
 import { join } from 'path';

@@ -15,15 +15,33 @@
 
 ## 開発
 
-### 依存関係
+### ディレクトリ構成
+
+* monorepo
+  * [frontend](./frontend/)
+    * [こちらのサイト](https://note.com/tabelog_frontend/n/n07b4077f5cf3)で紹介されているものを使用。
+  * [backend](./backend/)
+  * [shared](./shared/)
+
+### 主な依存関係
+
+#### 共通
 
 * [Volta](https://volta.sh)
   * Node.jsやYarnのバージョン管理
 * Node.js
 * Yarn
+
+#### フロントエンド
+
 * [React](https://ja.reactjs.org)
 * [Vite](https://vitejs.dev)
   * ビルドツール
+
+#### バックエンド
+
+* GraphQL
+* Apollo Server
 
 ### CSSについて
 
@@ -46,10 +64,6 @@ $ yarn dev
   > Local: http://localhost:3000/
   ...
 ```
-
-### ディレクトリ構成
-
-[こちらのサイト](https://note.com/tabelog_frontend/n/n07b4077f5cf3)で紹介されているものを使用。
 
 ## ライセンス
 

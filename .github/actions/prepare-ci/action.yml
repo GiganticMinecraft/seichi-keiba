@@ -1,0 +1,22 @@
+name: Prepare for CI
+description: Prepare for CI
+inputs:
+  node-ver:
+    description: The version of Node.js
+    required: true
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-ver }}
+        cache: yarn
+    - name: Install deps
+      run: yarn install --frozen-lockfile
+      shell: bash
+    - name: Generate codes in shared
+      run: yarn codegen
+      shell: bash
+    - name: Build shared package
+      run: yarn build:shared
+      shell: bash

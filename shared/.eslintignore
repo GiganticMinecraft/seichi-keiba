@@ -1,0 +1,7 @@
+*.d.ts
+.eslintrc.js
+*.config.js
+*.config.ts
+
+node_modules/*
+src/apollo/generated/**

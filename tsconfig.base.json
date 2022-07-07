@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "allowJs": false,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "composite": true,
+    "useDefineForClassFields": true,
+    "forceConsistentCasingInFileNames": true,
+    "declaration": true,
+    "sourceMap": true,
+    "moduleResolution": "node"
+  },
+}

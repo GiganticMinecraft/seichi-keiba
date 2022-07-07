@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js",
+    "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
+    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
+    "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "format:fix": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
+    "postinstall": "typesync || :"
+  },
+  "dependencies": {
+    "@gigantic-minecraft/seichi-keiba-shared": "*",
+    "apollo-server": "^3.1.1",
+    "graphql": "^16.5.0"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.4.5",
+    "@types/prettier": "^2.6.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^3.2.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "prettier": "^2.7.1",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.3.5"
+  }
+}

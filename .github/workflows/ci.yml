@@ -6,7 +6,7 @@ on:
       - LICENSE
       - README.md
       - renovate.json
-      - .github/workflows/*.yml
+      - .github/workflows/**
       - "!.github/workflows/ci.yml"
       - .github/actions/**
       - "!.github/actions/prepare-ci/action.yml"

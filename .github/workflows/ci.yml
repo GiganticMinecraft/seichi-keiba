@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        workspace: ["@gigantic-minecraft/seichi-keiba-shared", backend, frontend]
+        workspace: ["@giganticminecraft/seichi-keiba-shared", backend, frontend]
     steps:
       - uses: actions/checkout@v3
       - name: Prepare for CI

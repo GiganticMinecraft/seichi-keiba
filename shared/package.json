@@ -1,5 +1,5 @@
 {
-  "name": "@gigantic-minecraft/seichi-keiba-shared",
+  "name": "@giganticminecraft/seichi-keiba-shared",
   "version": "0.1.0",
   "license": "MIT",
   "main": "dist/index.js",

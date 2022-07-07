@@ -13,3 +13,21 @@ type Query {
   news(offset: Int, limit: Int): [News!]!
   valid_news(offset: Int, limit: Int): [News!]!
 }
+
+input CreateNewsInput {
+  title: String!
+  contents: [String!]!
+  closed_at: Date
+}
+
+input UpdateNewsInput {
+  title: String
+  contents: [String]
+  closed_at: Date
+}
+
+type Mutation {
+  create_news(input: CreateNewsInput!): News!
+  update_news(id: ID!, input: UpdateNewsInput): News!
+  delete_news(id: ID!): Boolean!
+}

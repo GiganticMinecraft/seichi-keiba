@@ -18,3 +18,19 @@ query getValidNews($offset: Int, $limit: Int) {
     last_updated_at
   }
 }
+
+mutation createNews($input: CreateNewsInput!) {
+  create_news(input: $input) {
+    ...newsDefaultFields
+  }
+}
+
+mutation updateNews($id: ID!, $input: UpdateNewsInput!) {
+  update_news(id: $id, input: $input) {
+    ...newsDefaultFields
+  }
+}
+
+mutation deleteNews($id: ID!) {
+  delete_news(id: $id)
+}

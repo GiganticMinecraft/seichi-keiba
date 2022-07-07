@@ -19,7 +19,7 @@ jobs:
         workspace: ["@gigantic-minecraft/seichi-keiba-shared", backend, frontend]
     steps:
       - name: Prepare for CI
-        uses: ./.github/actions/prepare-ci
+        uses: .github/actions/prepare-ci
         with:
           node-ver: ${{ env.node-ver }}
       - name: Run eslint-config-prettier

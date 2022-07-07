@@ -19,6 +19,9 @@ jobs:
     permissions:
       contents: read
       packages: write
+    defaults:
+      run:
+        working-directory: ./shared
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -32,7 +35,6 @@ jobs:
       - name: Git as GitHub Actions Bot
         uses: Lucky3028/git-as-gha@v1.0.0
       - name: Bump ver & Commit
-        working-directory: ./shared
         env:
           new-ver: ${{ github.event.inputs.new-ver }}
         run: |
@@ -42,6 +44,5 @@ jobs:
           git push origin main
       - name: Publish
         run: npm publish
-        working-directory: ./shared
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,3 +1,4 @@
+# ref. https://speakerdeck.com/puku0x/vscode-graphql-plus-graphql-code-generator-niyorukuai-shi-nahurontoendokai-fa
 schema: './src/apollo/schema.graphql'
 documents: './src/apollo/**/*.graphql'
 extensions:

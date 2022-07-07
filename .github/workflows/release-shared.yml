@@ -1,0 +1,47 @@
+name: Release shared package
+on:
+  workflow_dispatch:
+    inputs:
+      ver-up-level:
+        description: Whether ver level you want to update
+        type: choice
+        required: true
+        options:
+          - major
+          - minor
+          - patch
+env:
+  node-ver: 16
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref }} == refs/heads/main
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.node-ver }}
+          registry-url: https://npm.pkg.github.com
+      - name: Build
+        uses: ./.github/actions/prepare-ci
+        with:
+          node-ver: ${{ env.node-ver }}
+      - name: Git as GitHub Actions Bot
+        uses: Lucky3028/git-as-gha@v1.0.0
+      - name: Bump ver & Commit
+        working-directory: ./shared
+        env:
+          new-ver: ${{ github.event.inputs.new-ver }}
+        run: |
+          npm version ${{ env.new-ver }}
+          git add package.json
+          git commit -m "chore(shared): bump ver"
+          git push origin main
+      - name: Publish
+        run: npm publish
+        working-directory: ./shared
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

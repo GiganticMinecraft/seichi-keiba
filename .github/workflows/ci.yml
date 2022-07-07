@@ -6,9 +6,10 @@ on:
       - LICENSE
       - README.md
       - renovate.json
-      - ".github/workflows/*.yml"
+      - .github/workflows/*.yml
       - "!.github/workflows/ci.yml"
-      - "!.github/workflows/prepare-ci.yml"
+      - .github/actions/**
+      - "!.github/actions/prepare-ci/action.yml"
 env:
   node-ver: 16
 jobs:
@@ -18,6 +19,7 @@ jobs:
       matrix:
         workspace: ["@gigantic-minecraft/seichi-keiba-shared", backend, frontend]
     steps:
+      - uses: actions/checkout@v3
       - name: Prepare for CI
         uses: ./.github/actions/prepare-ci
         with:
@@ -35,8 +37,9 @@ jobs:
       matrix:
         workspace: [backend, frontend]
     steps:
+      - uses: actions/checkout@v3
       - name: Prepare for CI
-        uses: GiganticMinecraft/seichi-keiba/.github/workflows/prepare-ci.yml@main
+        uses: ./.github/actions/prepare-ci
         with:
           node-ver: ${{ env.node-ver }}
       - name: Build

@@ -37,7 +37,7 @@ const news = [
 const resolvers: serverSchema.Resolvers = {
   Query: {
     all_news: () => news,
-    valid_news: () =>
+    all_valid_news: () =>
       news.filter(
         (value) => !value.closed_at || new Date(value.closed_at) >= new Date(),
       ),

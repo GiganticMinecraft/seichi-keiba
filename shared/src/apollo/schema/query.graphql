@@ -16,5 +16,5 @@ type Query {
   all_horses(pagination: Pagination): [Horse!]!
 
   jockey(id: ID!): Jockey
-  all_jockeys(pagination: Pagination): [Horse!]!
+  all_jockeys(pagination: Pagination): [Jockey!]!
 }

@@ -29,12 +29,14 @@ query getNewsById($id: ID!) {
 mutation createNews($input: CreateNewsInput!) {
   create_news(input: $input) {
     ...newsDefaultFields
+    closed_at
   }
 }
 
 mutation updateNews($id: ID!, $input: UpdateNewsInput!) {
   update_news(id: $id, input: $input) {
     ...newsDefaultFields
+    closed_at
   }
 }
 

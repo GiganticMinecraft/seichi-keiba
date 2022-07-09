@@ -1,0 +1,24 @@
+scalar RaceName
+
+enum CourseType {
+  TURF
+  DIRT
+  JUMP
+}
+
+type HorseEntry {
+  horse: Horse!
+  frame: Int!
+  number: Int!
+  jockey: Jockey!
+}
+
+type Race {
+  id: ID!
+  name: RaceName!
+  date: Date!
+  order: Int!
+  course: CourseType!
+  distance: Int!
+  horses: [HorseEntry!]!
+}

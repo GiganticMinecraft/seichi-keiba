@@ -5,6 +5,7 @@ import {
   reduceFlag,
   makeStringArgument,
   makePositionalArguments,
+  makeBooleanFlag,
 } from 'catacli';
 import { stat, readdir, readFile, writeFile } from 'fs/promises';
 import { extname } from 'path';
@@ -19,9 +20,27 @@ const outputFile = makeStringFlag('outputFile', {
 const fileExtensions = makeStringFlag('extension', {
   alias: 'e',
 });
+const recursively = makeBooleanFlag('recursively', {
+  alias: 'r',
+  default: false,
+});
 
 const argDefinitions = makePositionalArguments(sourceFolder);
-const flagDefinitions = reduceFlag(outputFile, fileExtensions);
+const flagDefinitions = reduceFlag(outputFile, fileExtensions, recursively);
+
+const readdirRecursively = async (dir: string, files: string[] = []) => {
+  const dirents = await readdir(dir, { withFileTypes: true });
+  const dirs: string[] = [];
+
+  dirents.forEach((dirent) => {
+    if (dirent.isDirectory()) dirs.push(`${dir}/${dirent.name}`);
+    if (dirent.isFile()) files.push(`${dir}/${dirent.name}`);
+  });
+
+  await Promise.all(dirs.map(async (d) => readdirRecursively(d, files)));
+
+  return Promise.resolve(files);
+};
 
 const command = makeCommand({
   name: 'gather-file-contents',
@@ -30,15 +49,13 @@ const command = makeCommand({
   flag: flagDefinitions,
   handler: async (args, opts) => {
     const sourceDir = args.sourceFolder.value;
-    const encoding = 'utf-8';
 
     // 空文字を書き込んで、ファイルの中身を消す
     await writeFile(opts.outputFile.value ?? defaultOutputFile, '');
 
-    await readdir(sourceDir, { encoding })
+    await readdirRecursively(sourceDir)
       .then((files) =>
         files
-          .map((file) => `${sourceDir}/${file}`)
           .filter(async (path) => (await stat(path)).isFile())
           .filter((path) => {
             const ext = opts.extension.value?.toLowerCase();
@@ -48,7 +65,9 @@ const command = makeCommand({
           }),
       )
       .then(async (files) =>
-        Promise.all(files.map(async (file) => readFile(file, { encoding }))),
+        Promise.all(
+          files.map(async (file) => readFile(file, { encoding: 'utf-8' })),
+        ),
       )
       .then(async (files) =>
         Promise.all(

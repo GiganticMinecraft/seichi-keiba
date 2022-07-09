@@ -1,0 +1,6 @@
+scalar HorseName
+
+type Horse {
+  id: ID!
+  name: HorseName!
+}

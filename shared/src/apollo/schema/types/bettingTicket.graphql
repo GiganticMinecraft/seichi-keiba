@@ -1,0 +1,18 @@
+### 馬券の種類
+enum TicketType {
+  ### 単勝
+  WIN
+  ### 複勝
+  PLACE
+  ### 馬単
+  EXACTA
+  ### 3連単
+  TIERCE
+}
+
+### TODO: add horses
+
+type BettingTicket {
+  id: ID!
+  type: TicketType!
+}

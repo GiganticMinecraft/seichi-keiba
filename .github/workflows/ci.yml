@@ -1,15 +1,5 @@
 name: CI
 on:
-  pull_request:
-    paths-ignore:
-      - CODEOWNERS
-      - LICENSE
-      - README.md
-      - renovate.json
-      - .github/workflows/**
-      - "!.github/workflows/ci.yml"
-      - .github/actions/**
-      - "!.github/actions/prepare-ci/action.yml"
   push:
     paths-ignore:
       - CODEOWNERS

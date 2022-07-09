@@ -15,7 +15,9 @@ query getAllNews($pagination: Pagination) {
 query getValidNews($pagination: Pagination) {
   all_valid_news(pagination: $pagination) {
     ...newsDefaultFields
-    last_updated_at
+    closed_at
+  }
+}
   }
 }
 

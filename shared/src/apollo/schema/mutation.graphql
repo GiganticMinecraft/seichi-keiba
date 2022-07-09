@@ -17,6 +17,12 @@ input CreateHorseEntry {
   jockey_id: ID!
 }
 
+input UpdateHorseEntryInput {
+  frame: Int
+  number: Int
+  jockey_id: ID
+}
+
 input CreateRaceInput {
   name: String!
   date: Date!
@@ -26,12 +32,29 @@ input CreateRaceInput {
   horses: [CreateHorseEntry!]!
 }
 
+input UpdateRaceInput {
+  name: String
+  date: Date
+  order: Int
+  course: CourseType
+  distance: Int
+  horses: [UpdateHorseEntryInput!]
+}
+
 input CreateHorseInput {
   name: String!
 }
 
+input UpdateHorseInput {
+  name: String
+}
+
 input CreateJockeyInput {
   name: String!
+}
+
+input UpdateJockeyInput {
+  name: String
 }
 
 type Mutation {
@@ -40,8 +63,14 @@ type Mutation {
   delete_news(id: ID!): Boolean!
 
   create_race(input: CreateRaceInput!): Race!
+  update_race(id: ID!, input: UpdateRaceInput): Race!
+  delete_race(id: ID!): Boolean!
 
   create_horse(input: CreateHorseInput!): Horse!
+  update_horse(id: ID!, input: UpdateHorseInput!): Horse!
+  delete_horse(id: ID!): Boolean!
 
   create_jockey(input: CreateJockeyInput!): Jockey!
+  update_jockey(id: ID!, input: UpdateJockeyInput!): Jockey!
+  delete_jockey(id: ID!): Boolean!
 }

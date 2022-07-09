@@ -3,4 +3,4 @@ import * as serverSchema from './apollo/generated/server';
 
 export { serverSchema, clientSchema };
 
-export * from './types/nonimal';
+export * from './types';

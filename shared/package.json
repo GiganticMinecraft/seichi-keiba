@@ -19,8 +19,8 @@
     "codegen:gen": "graphql-codegen",
     "codegen:gen:watch": "graphql-codegen --watch",
     "codegen:prepare": "yarn codegen:prepare:schema & yarn codegen:prepare:query",
-    "codegen:prepare:schema": "ts-node ./src/gather-file-contents.ts ./src/apollo/schema -o ./src/apollo/generated/schema.graphql -e graphql",
-    "codegen:prepare:query": "ts-node ./src/gather-file-contents.ts ./src/apollo/query -o ./src/apollo/generated/query.graphql -e graphql",
+    "codegen:prepare:schema": "mkdir -p ./src/apollo/generated && ts-node ./src/gather-file-contents.ts ./src/apollo/schema -o ./src/apollo/generated/schema.graphql -e graphql",
+    "codegen:prepare:query": "mkdir -p ./src/apollo/generated && ts-node ./src/gather-file-contents.ts ./src/apollo/query -o ./src/apollo/generated/query.graphql -e graphql",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
@@ -47,6 +47,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prefer-arrow": "^1.2.3",
     "prettier": "^2.7.1",
+    "ts-node": "^10.8.2",
     "typescript": "^4.7.4",
     "typesync": "^0.9.1"
   },

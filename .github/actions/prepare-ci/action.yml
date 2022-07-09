@@ -14,12 +14,6 @@ runs:
     - name: Install deps
       run: yarn install --frozen-lockfile
       shell: bash
-    - run: pwd
-      shell: bash
-      working-directory: ./shared
-    - run: yarn codegen:prepare && ls -la ./src/apollo/generated
-      shell: bash
-      working-directory: ./shared
     - name: Generate codes in shared
       run: yarn codegen
       shell: bash

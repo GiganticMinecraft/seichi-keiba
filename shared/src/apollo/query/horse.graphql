@@ -1,0 +1,32 @@
+fragment horseDefaultFields on Horse {
+  id
+  name
+}
+
+query getAllHorses($pagination: Pagination) {
+  all_horses(pagination: $pagination) {
+    ...horseDefaultFields
+  }
+}
+
+query getHorseById($id: ID!) {
+  horse(id: $id) {
+    ...horseDefaultFields
+  }
+}
+
+mutation createHorse($input: CreateHorseInput!) {
+  create_horse(input: $input) {
+    ...horseDefaultFields
+  }
+}
+
+mutation updateHorse($id: ID!, $input: UpdateHorseInput!) {
+  update_horse(id: $id, input: $input) {
+    ...horseDefaultFields
+  }
+}
+
+mutation deleteHorse($id: ID!) {
+  delete_horse(id: $id)
+}

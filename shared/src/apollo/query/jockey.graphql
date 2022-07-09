@@ -1,0 +1,32 @@
+fragment jockeyDefaultFields on Jockey {
+  id
+  name
+}
+
+query getAllJockeys($pagination: Pagination) {
+  all_jockeys(pagination: $pagination) {
+    ...jockeyDefaultFields
+  }
+}
+
+query getJockeyById($id: ID!) {
+  jockey(id: $id) {
+    ...jockeyDefaultFields
+  }
+}
+
+mutation createJockey($input: CreateJockeyInput!) {
+  create_jockey(input: $input) {
+    ...jockeyDefaultFields
+  }
+}
+
+mutation updateJockey($id: ID!, $input: UpdateJockeyInput!) {
+  update_jockey(id: $id, input: $input) {
+    ...jockeyDefaultFields
+  }
+}
+
+mutation deleteJockey($id: ID!) {
+  delete_jockey(id: $id)
+}

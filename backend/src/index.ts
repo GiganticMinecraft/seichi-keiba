@@ -3,11 +3,16 @@ import {
   asDateString,
 } from '@giganticminecraft/seichi-keiba-shared';
 import { ApolloServer } from 'apollo-server';
-import { readFileSync } from 'fs';
+import { readFile } from 'fs/promises';
 import { join } from 'path';
 
-const path = join(process.cwd(), '../shared/src/apollo', 'schema.graphql');
-const typeDefs = readFileSync(path).toString('utf-8');
+const path =
+  process.env.NODE_ENV === 'production'
+    ? ['.', 'schema.graphql']
+    : ['../shared/src/apollo/generated', 'schema.graphql'];
+const typeDefs = await readFile(join(process.cwd(), ...path), {
+  encoding: 'utf-8',
+});
 
 // スキーマと実際のデータ構造の紐付けを resolvers で行う
 const news = [
@@ -36,15 +41,16 @@ const news = [
 
 const resolvers: serverSchema.Resolvers = {
   Query: {
-    news: () => news,
-    valid_news: () =>
+    all_news: () => news,
+    all_valid_news: () =>
       news.filter(
         (value) => !value.closed_at || new Date(value.closed_at) >= new Date(),
       ),
+    news: (_, { id }) => news.find((v) => v.id === id) ?? null,
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, cache: 'bounded' });
 
 server
   .listen()

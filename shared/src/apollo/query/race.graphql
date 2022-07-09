@@ -1,0 +1,48 @@
+fragment raceDefaultFields on Race {
+  id
+  name
+  course
+  distance
+}
+
+query getAllRaces($pagination: Pagination) {
+  all_races(pagination: $pagination) {
+    ...raceDefaultFields
+  }
+}
+
+query getAllValidRaces($pagination: Pagination) {
+  all_races(pagination: $pagination) {
+    ...raceDefaultFields
+    date
+    order
+  }
+}
+
+query getRaceById($id: ID!) {
+  race(id: $id) {
+    ...raceDefaultFields
+    date
+    order
+  }
+}
+
+mutation createRace($input: CreateRaceInput!) {
+  create_race(input: $input) {
+    ...raceDefaultFields
+    date
+    order
+  }
+}
+
+mutation updateRace($id: ID!, $input: UpdateRaceInput!) {
+  update_race(id: $id, input: $input) {
+    ...raceDefaultFields
+    date
+    order
+  }
+}
+
+mutation deleteRace($id: ID!) {
+  delete_race(id: $id)
+}

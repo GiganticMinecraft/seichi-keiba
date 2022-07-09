@@ -1,0 +1,76 @@
+input CreateNewsInput {
+  title: NewsTitle!
+  contents: [String!]!
+  closed_at: Date
+}
+
+input UpdateNewsInput {
+  title: NewsTitle
+  contents: [String]
+  closed_at: Date
+}
+
+input CreateHorseEntry {
+  horse_id: ID!
+  frame: NaturalNumber!
+  number: NaturalNumber!
+  jockey_id: ID!
+}
+
+input UpdateHorseEntryInput {
+  frame: NaturalNumber
+  number: NaturalNumber
+  jockey_id: ID
+}
+
+input CreateRaceInput {
+  name: RaceName!
+  date: Date!
+  order: NaturalNumber!
+  course: CourseType!
+  distance: NaturalNumber!
+  horses: [CreateHorseEntry!]!
+}
+
+input UpdateRaceInput {
+  name: RaceName
+  date: Date
+  order: NaturalNumber
+  course: CourseType
+  distance: NaturalNumber
+  horses: [UpdateHorseEntryInput!]
+}
+
+input CreateHorseInput {
+  name: HorseName!
+}
+
+input UpdateHorseInput {
+  name: HorseName
+}
+
+input CreateJockeyInput {
+  name: JockeyName!
+}
+
+input UpdateJockeyInput {
+  name: JockeyName
+}
+
+type Mutation {
+  create_news(input: CreateNewsInput!): News!
+  update_news(id: ID!, input: UpdateNewsInput!): News!
+  delete_news(id: ID!): Boolean!
+
+  create_race(input: CreateRaceInput!): Race!
+  update_race(id: ID!, input: UpdateRaceInput): Race!
+  delete_race(id: ID!): Boolean!
+
+  create_horse(input: CreateHorseInput!): Horse!
+  update_horse(id: ID!, input: UpdateHorseInput!): Horse!
+  delete_horse(id: ID!): Boolean!
+
+  create_jockey(input: CreateJockeyInput!): Jockey!
+  update_jockey(id: ID!, input: UpdateJockeyInput!): Jockey!
+  delete_jockey(id: ID!): Boolean!
+}

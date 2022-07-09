@@ -4,14 +4,15 @@
  */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 export type Nonimal<T, U extends string> = T & { __brand: U };
+
 const isString = (v: unknown): v is string => typeof v === 'string';
 function assertString(v: unknown, target = ''): asserts v is string {
   if (!isString(v)) throw new Error(`${target} must be string`.trim());
 }
 
-export type NonBlankString = Nonimal<string, 'FilledString'>;
+export type NonBlankString = Nonimal<string, 'NonBlankString'>;
 const isNonBlankString = (v: unknown): v is string => isString(v) && v !== '';
-function assertNonBlankString(
+export function assertNonBlankString(
   v: unknown,
   target = '',
 ): asserts v is NonBlankString {
@@ -21,12 +22,7 @@ function assertNonBlankString(
     throw new Error(`${target} must be not empty string`.trim());
 }
 
-export type DateString = Nonimal<string, 'Date'>;
-function assertDateString(v: unknown): asserts v is DateString {
-  assertNonBlankString(v);
+export const isNumber = (v: unknown): v is number => typeof v === 'number';
+export function assertNumber(v: unknown): asserts v is number {
+  if (!isNumber(v)) throw new Error('The value must be number'.trim());
 }
-export const asDateString = (v: unknown): DateString => {
-  assertDateString(v);
-
-  return v;
-};

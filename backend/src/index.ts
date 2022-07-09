@@ -50,7 +50,7 @@ const resolvers: serverSchema.Resolvers = {
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({ typeDefs, resolvers, cache: 'bounded' });
 
 server
   .listen()

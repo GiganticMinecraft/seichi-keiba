@@ -28,7 +28,7 @@ query getRaceById($id: ID!) {
 }
 
 mutation createRace($input: CreateRaceInput!) {
-  create_news(input: $input) {
+  create_race(input: $input) {
     ...raceDefaultFields
     date
     order
@@ -36,7 +36,7 @@ mutation createRace($input: CreateRaceInput!) {
 }
 
 mutation updateRace($id: ID!, $input: UpdateRaceInput!) {
-  update_news(id: $id, input: $input) {
+  update_race(id: $id, input: $input) {
     ...raceDefaultFields
     date
     order
@@ -44,5 +44,5 @@ mutation updateRace($id: ID!, $input: UpdateRaceInput!) {
 }
 
 mutation deleteRace($id: ID!) {
-  delete_news(id: $id)
+  delete_race(id: $id)
 }

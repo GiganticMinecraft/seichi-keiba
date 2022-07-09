@@ -4,6 +4,7 @@
  */
 /* eslint-disable prefer-arrow/prefer-arrow-functions */
 export type Nonimal<T, U extends string> = T & { __brand: U };
+
 const isString = (v: unknown): v is string => typeof v === 'string';
 function assertString(v: unknown, target = ''): asserts v is string {
   if (!isString(v)) throw new Error(`${target} must be string`.trim());
@@ -19,4 +20,9 @@ export function assertNonBlankString(
 
   if (!isNonBlankString(v))
     throw new Error(`${target} must be not empty string`.trim());
+}
+
+export const isNumber = (v: unknown): v is number => typeof v === 'number';
+export function assertNumber(v: unknown): asserts v is number {
+  if (!isNumber(v)) throw new Error('The value must be number'.trim());
 }

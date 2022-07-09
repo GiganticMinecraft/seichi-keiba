@@ -1,60 +1,60 @@
 input CreateNewsInput {
-  title: String!
+  title: NewsTitle!
   contents: [String!]!
   closed_at: Date
 }
 
 input UpdateNewsInput {
-  title: String
+  title: NewsTitle
   contents: [String]
   closed_at: Date
 }
 
 input CreateHorseEntry {
   horse_id: ID!
-  frame: Int!
-  number: Int!
+  frame: NaturalNumber!
+  number: NaturalNumber!
   jockey_id: ID!
 }
 
 input UpdateHorseEntryInput {
-  frame: Int
-  number: Int
+  frame: NaturalNumber
+  number: NaturalNumber
   jockey_id: ID
 }
 
 input CreateRaceInput {
-  name: String!
+  name: RaceName!
   date: Date!
-  order: Int!
+  order: NaturalNumber!
   course: CourseType!
-  distance: Int!
+  distance: NaturalNumber!
   horses: [CreateHorseEntry!]!
 }
 
 input UpdateRaceInput {
-  name: String
+  name: RaceName
   date: Date
-  order: Int
+  order: NaturalNumber
   course: CourseType
-  distance: Int
+  distance: NaturalNumber
   horses: [UpdateHorseEntryInput!]
 }
 
 input CreateHorseInput {
-  name: String!
+  name: HorseName!
 }
 
 input UpdateHorseInput {
-  name: String
+  name: HorseName
 }
 
 input CreateJockeyInput {
-  name: String!
+  name: JockeyName!
 }
 
 input UpdateJockeyInput {
-  name: String
+  name: JockeyName
 }
 
 type Mutation {

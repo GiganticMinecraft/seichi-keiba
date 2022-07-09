@@ -1,4 +1,5 @@
 scalar RaceName
+scalar NaturalNumber
 
 enum CourseType {
   TURF
@@ -8,8 +9,8 @@ enum CourseType {
 
 type HorseEntry {
   horse: Horse!
-  frame: Int!
-  number: Int!
+  frame: NaturalNumber!
+  number: NaturalNumber!
   jockey: Jockey!
 }
 
@@ -17,8 +18,8 @@ type Race {
   id: ID!
   name: RaceName!
   date: Date!
-  order: Int!
+  order: NaturalNumber!
   course: CourseType!
-  distance: Int!
+  distance: NaturalNumber!
   horses: [HorseEntry!]!
 }

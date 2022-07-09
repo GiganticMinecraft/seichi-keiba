@@ -18,6 +18,11 @@ query getValidNews($pagination: Pagination) {
     closed_at
   }
 }
+
+query getNewsById($id: ID!) {
+  news(id: $id) {
+    ...newsDefaultFields
+    closed_at
   }
 }
 

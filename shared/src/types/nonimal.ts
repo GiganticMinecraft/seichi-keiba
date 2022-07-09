@@ -9,7 +9,7 @@ function assertString(v: unknown, target = ''): asserts v is string {
   if (!isString(v)) throw new Error(`${target} must be string`.trim());
 }
 
-export type NonBlankString = Nonimal<string, 'FilledString'>;
+export type NonBlankString = Nonimal<string, 'NonBlankString'>;
 const isNonBlankString = (v: unknown): v is string => isString(v) && v !== '';
 export function assertNonBlankString(
   v: unknown,

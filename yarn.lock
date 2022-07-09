@@ -2422,7 +2422,7 @@ apollo-server-types@^3.6.1:
     apollo-reporting-protobuf "^3.3.1"
     apollo-server-env "^4.2.1"
 
-apollo-server@^3.1.1:
+apollo-server@3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-3.9.0.tgz#391b60c4c24d37c65855cccc8aa886e684bc1776"
   integrity sha512-g80gXDuK8fl2W0fQF/hEyeoO9AU+sO2gBzeJAYUyGLotYc+oL/Y3mTRk5GB8C7cXUXCg5uvWbUj8va0E5UZE7w==

@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@giganticminecraft/seichi-keiba-shared": "*",
-    "apollo-server": "^3.1.1",
+    "apollo-server": "3.9.0",
     "graphql": "^16.5.0"
   },
   "devDependencies": {

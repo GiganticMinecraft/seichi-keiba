@@ -23,4 +23,4 @@ dist-ssr
 *.sw?
 
 # auto-generated
-shared/src/apollo/generated/*.ts
+shared/src/apollo/generated

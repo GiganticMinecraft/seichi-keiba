@@ -1,0 +1,47 @@
+input CreateNewsInput {
+  title: String!
+  contents: [String!]!
+  closed_at: Date
+}
+
+input UpdateNewsInput {
+  title: String
+  contents: [String]
+  closed_at: Date
+}
+
+input CreateHorseEntry {
+  horse_id: ID!
+  frame: Int!
+  number: Int!
+  jockey_id: ID!
+}
+
+input CreateRaceInput {
+  name: String!
+  date: Date!
+  order: Int!
+  course: CourseType!
+  distance: Int!
+  horses: [CreateHorseEntry!]!
+}
+
+input CreateHorseInput {
+  name: String!
+}
+
+input CreateJockeyInput {
+  name: String!
+}
+
+type Mutation {
+  create_news(input: CreateNewsInput!): News!
+  update_news(id: ID!, input: UpdateNewsInput!): News!
+  delete_news(id: ID!): Boolean!
+
+  create_race(input: CreateRaceInput!): Race!
+
+  create_horse(input: CreateHorseInput!): Horse!
+
+  create_jockey(input: CreateJockeyInput!): Jockey!
+}

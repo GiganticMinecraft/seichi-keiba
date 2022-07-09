@@ -6,7 +6,7 @@ import {
   makeStringArgument,
   makePositionalArguments,
 } from 'catacli';
-import { statSync, readdirSync, readFileSync, writeFileSync } from 'fs';
+import { stat, readdir, readFile, writeFile } from 'fs/promises';
 import { extname } from 'path';
 
 const sourceFolder = makeStringArgument('sourceFolder');
@@ -28,24 +28,37 @@ const command = makeCommand({
   usage: 'sourceDirectory -o outputFile',
   positionalArguments: argDefinitions,
   flag: flagDefinitions,
-  handler: (args, opts) => {
+  handler: async (args, opts) => {
     const sourceDir = args.sourceFolder.value;
     const encoding = 'utf-8';
 
-    readdirSync(sourceDir, { encoding })
-      .map((file) => `${sourceDir}/${file}`)
-      .filter((path) => statSync(path).isFile())
-      .filter((path) => {
-        const ext = opts.extension.value;
+    // 空文字を書き込んで、ファイルの中身を消す
+    await writeFile(opts.outputFile.value ?? defaultOutputFile, '');
 
-        // 拡張子が指定されていなければtrue、指定されていればその拡張子のファイルかどうかを返す
-        return !ext || extname(path).toLowerCase() === ext;
-      })
-      .map((file) => readFileSync(file, { encoding }))
-      .forEach((content) =>
-        writeFileSync(opts.outputFile.value ?? defaultOutputFile, content, {
-          flag: 'a',
-        }),
+    await readdir(sourceDir, { encoding })
+      .then((files) =>
+        files
+          .map((file) => `${sourceDir}/${file}`)
+          .filter(async (path) => (await stat(path)).isFile())
+          .filter((path) => {
+            const ext = opts.extension.value?.toLowerCase();
+
+            // 拡張子が指定されていなければtrue、指定されていればその拡張子のファイルかどうかを返す
+            return !ext || extname(path).toLowerCase().slice(1) === ext;
+          }),
+      )
+      .then(async (files) =>
+        Promise.all(files.map(async (file) => readFile(file, { encoding }))),
+      )
+      .then(async (files) =>
+        Promise.all(
+          files.map(async (file) =>
+            writeFile(opts.outputFile.value ?? defaultOutputFile, file, {
+              // 上書きではなく追記
+              flag: 'a',
+            }),
+          ),
+        ),
       );
   },
 });

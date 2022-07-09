@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon",
     "build": "tsc -p tsconfig.json && cp ../shared/src/apollo/generated/schema.graphql ./dist",
-    "start": "node dist/index.js",
+    "start": "cd dist && NODE_ENV=production node ./index.js",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",

@@ -11,7 +11,7 @@ function assertString(v: unknown, target = ''): asserts v is string {
 
 export type NonBlankString = Nonimal<string, 'FilledString'>;
 const isNonBlankString = (v: unknown): v is string => isString(v) && v !== '';
-function assertNonBlankString(
+export function assertNonBlankString(
   v: unknown,
   target = '',
 ): asserts v is NonBlankString {
@@ -20,13 +20,3 @@ function assertNonBlankString(
   if (!isNonBlankString(v))
     throw new Error(`${target} must be not empty string`.trim());
 }
-
-export type DateString = Nonimal<string, 'Date'>;
-function assertDateString(v: unknown): asserts v is DateString {
-  assertNonBlankString(v);
-}
-export const asDateString = (v: unknown): DateString => {
-  assertDateString(v);
-
-  return v;
-};

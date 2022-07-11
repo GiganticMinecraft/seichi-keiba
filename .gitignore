@@ -24,3 +24,4 @@ dist-ssr
 
 # auto-generated
 shared/src/apollo/generated
+**/src/gen-apollo.ts

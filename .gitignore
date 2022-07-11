@@ -23,5 +23,6 @@ dist-ssr
 *.sw?
 
 # auto-generated
+backend/docker/mongodb-data
 shared/src/apollo/generated
 **/src/gen-apollo.ts

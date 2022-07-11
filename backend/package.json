@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon",
-    "build": "tsc -p tsconfig.json && cp ../shared/src/apollo/generated/schema.graphql ./dist",
+    "build": "tsc -p tsconfig.json && yarn build:post",
+    "build:post": "cp ../shared/src/apollo/generated/schema.graphql ./dist",
     "start": "cd dist && NODE_ENV=production node ./index.js",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",

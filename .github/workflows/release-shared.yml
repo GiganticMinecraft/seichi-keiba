@@ -36,9 +36,9 @@ jobs:
         uses: Lucky3028/git-as-gha@v1.0.0
       - name: Bump ver & Commit
         env:
-          new-ver: ${{ github.event.inputs.new-ver }}
+          ver-up-level: ${{ github.event.inputs.ver-up-level }}
         run: |
-          npm version ${{ env.new-ver }}
+          npm version ${{ env.ver-up-level }}
           git add package.json
           git commit -m "chore(shared): bump ver"
           git push origin main

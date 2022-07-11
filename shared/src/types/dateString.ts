@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Nonimal, assertNonBlankString } from './nonimal';
 
 export type DateString = Nonimal<string, 'Date'>;

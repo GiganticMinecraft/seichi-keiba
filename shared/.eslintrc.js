@@ -105,4 +105,16 @@ module.exports = {
       typescript: [],
     },
   },
+  overrides: [
+    /**
+     * assertionをアロー関数で書くと、`Assertions require every name in the call target to be declared with an explicit type annotation.`というエラーが発生する
+     * ref. https://qiita.com/suin/items/e226c42a19e1ddd39d05
+     */
+    {
+      files: ['./src/types/**/*.ts'],
+      rules: {
+        'prefer-arrow/prefer-arrow-functions': 'off',
+      },
+    },
+  ],
 };

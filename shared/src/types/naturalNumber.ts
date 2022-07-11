@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Nonimal, isNumber, assertNumber } from './nonimal';
 
 export type NaturalNumber = Nonimal<number, 'NaturalNumber'>;

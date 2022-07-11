@@ -1,4 +1,3 @@
-/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Nonimal, assertNonBlankString } from '../nonimal';
 
 export type RaceName = Nonimal<string, 'RaceName'>;

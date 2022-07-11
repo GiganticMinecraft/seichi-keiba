@@ -1,10 +1,12 @@
 import {
-  serverSchema,
   asDateString,
+  asNewsTitle,
 } from '@giganticminecraft/seichi-keiba-shared';
 import { ApolloServer } from 'apollo-server';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+
+import { News, Resolvers } from '@/gen-apollo';
 
 const path =
   process.env.NODE_ENV === 'production'
@@ -15,31 +17,31 @@ const typeDefs = await readFile(join(process.cwd(), ...path), {
 });
 
 // スキーマと実際のデータ構造の紐付けを resolvers で行う
-const news = [
+const news: News[] = [
   {
     id: '1',
-    title: 'title undefined',
+    title: asNewsTitle('title undefined'),
     contents: ['contents'],
     created_at: asDateString('2022/07/01'),
     closed_at: undefined,
   },
   {
     id: '2',
-    title: 'title valid',
+    title: asNewsTitle('title valid'),
     contents: ['contents'],
     created_at: asDateString('2022/07/01'),
     closed_at: asDateString('2022-07-10'),
   },
   {
     id: '3',
-    title: 'title invalid',
+    title: asNewsTitle('title invalid'),
     contents: ['contents'],
     created_at: asDateString('2022/07/01'),
     closed_at: asDateString('2022-07-01'),
   },
 ];
 
-const resolvers: serverSchema.Resolvers = {
+const resolvers: Resolvers = {
   Query: {
     all_news: () => news,
     all_valid_news: () =>

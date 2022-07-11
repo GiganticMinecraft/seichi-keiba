@@ -11,6 +11,13 @@ runs:
       with:
         node-version: ${{ inputs.node-ver }}
         cache: yarn
+    - name: Cache node_modules
+      uses: actions/cache@v3
+      env:
+        cache-ver: '1'
+      with:
+        path: './node_modules'
+        key: ${{ runner.os }}-build-v${{ env.cache-ver }}-${{ hashFiles('./yarn.lock') }}
     - name: Install deps
       run: yarn install --frozen-lockfile
       shell: bash

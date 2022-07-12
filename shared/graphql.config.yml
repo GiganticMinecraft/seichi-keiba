@@ -14,6 +14,7 @@ extensions:
           - typescript-operations
           - typed-document-node
         config:
+          enumsAsTypes: true
           scalars:
             Date: DateString
             HorseName: HorseName
@@ -31,6 +32,7 @@ extensions:
           - typescript-resolvers
         config:
           useIndexSignature: true
+          enumsAsTypes: true
           scalars:
             Date: DateString
             HorseName: HorseName

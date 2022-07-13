@@ -14,7 +14,7 @@
     "directory": "shared"
   },
   "scripts": {
-    "build": "tsc -p ./tsconfig.json",
+    "build": "tsc",
     "codegen": "yarn codegen:prepare && yarn codegen:gen",
     "codegen:gen": "graphql-codegen",
     "codegen:gen:watch": "graphql-codegen --watch",

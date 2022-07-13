@@ -6,7 +6,7 @@ volumes:
 services:
   mongodb-primary:
     container_name: mongodb-primary
-    image: mongo:4.4
+    image: mongo:5.0
     restart: always
     command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
     expose:
@@ -22,7 +22,7 @@ services:
       - ./mongo-keyfile:/etc/mongod-keyfile:ro
   mongodb-secondary:
     container_name: mongodb-secondary
-    image: mongo:4.4
+    image: mongo:5.0
     restart: always
     command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
     expose:
@@ -35,7 +35,7 @@ services:
       - ./mongo-keyfile:/etc/mongod-keyfile:ro
   mongodb-arbiter:
     container_name: mongodb-arbiter
-    image: mongo:4.4
+    image: mongo:5.0
     restart: always
     command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
     expose:

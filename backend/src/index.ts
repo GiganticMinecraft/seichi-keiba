@@ -7,7 +7,7 @@ import { readFile } from 'fs/promises';
 import { join } from 'path';
 
 import type { News, Resolvers } from '@/gen-apollo';
-import { disconnectFromDb } from '@/prisma';
+import { connectToDb, disconnectFromDb } from '@/prisma';
 
 // スキーマと実際のデータ構造の紐付けを resolvers で行う
 const news: News[] = [
@@ -58,20 +58,22 @@ const loadSchema = async () => {
 };
 
 const runServer = async (typeDefs: string) => {
+  await connectToDb();
+
   const server = new ApolloServer({ typeDefs, resolvers, cache: 'bounded' });
 
-  return server.listen().then(({ url }) => url);
+  return server
+    .listen()
+    .then(({ url }) => url) // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    .finally(async () => disconnectFromDb());
 };
 
 const main = async () => {
   const schema = await loadSchema();
 
-  runServer(schema)
-    .then((url) => {
-      console.log(`🚀  Server ready at ${url}`);
-    })
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
-    .finally(async () => disconnectFromDb());
+  await runServer(schema).then((url) => {
+    console.log(`🚀  Server ready at ${url}`);
+  });
 };
 
 main().catch((err) => {

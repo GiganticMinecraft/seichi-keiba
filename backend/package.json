@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
-    "build": "tsc -p tsconfig.json && yarn build:post",
+    "dev": ". ./.env && yarn ts-node-dev -r tsconfig-paths/register ./src/index.ts",
+    "build": "tsc && tsc-alias && yarn build:post",
     "build:post": "cp ../shared/src/apollo/generated/schema.graphql ./dist",
     "start": "cd dist && NODE_ENV=production node ./index.js",
     "lint": "eslint 'src/**/*.{js,jsx,ts,tsx}'",

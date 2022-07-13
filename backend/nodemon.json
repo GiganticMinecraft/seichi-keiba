@@ -1,5 +1,0 @@
-{
-  "watch": ["src"],
-  "ext": "ts",
-  "exec": "yarn node --loader ts-node/esm src/index.ts"
-}

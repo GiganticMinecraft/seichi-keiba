@@ -5,3 +5,4 @@
 
 node_modules/*
 src/gen-apollo.ts
+docker/init/init.js

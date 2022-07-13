@@ -13,6 +13,7 @@
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx}'",
     "format": "prettier --check --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
     "format:fix": "prettier --write --loglevel=warn 'src/**/*.{js,jsx,ts,tsx,html,gql,graphql,json}'",
+    "format:prisma": "prisma format",
     "lint:conflict": "eslint-config-prettier 'src/**/*.{js,jsx,ts,tsx}'",
     "clean": "rm -rf dist/** tsconfig.tsbuildinfo",
     "postinstall": "typesync || :"

@@ -6,15 +6,8 @@ import { ApolloServer } from 'apollo-server';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 
-import { News, Resolvers } from '@/gen-apollo';
-
-const path =
-  process.env.NODE_ENV === 'production'
-    ? ['.', 'schema.graphql']
-    : ['../shared/src/apollo/generated', 'schema.graphql'];
-const typeDefs = await readFile(join(process.cwd(), ...path), {
-  encoding: 'utf-8',
-});
+import type { News, Resolvers } from '@/gen-apollo';
+import { disconnectFromDb } from '@/prisma';
 
 // スキーマと実際のデータ構造の紐付けを resolvers で行う
 const news: News[] = [
@@ -52,14 +45,36 @@ const resolvers: Resolvers = {
   },
 };
 
-const server = new ApolloServer({ typeDefs, resolvers, cache: 'bounded' });
+const loadSchema = async () => {
+  const SCHEMA_FILE = 'schema.graphql';
+  const path =
+    process.env.NODE_ENV === 'production'
+      ? ['.', SCHEMA_FILE]
+      : ['../shared/src/apollo/generated', SCHEMA_FILE];
 
-server
-  .listen()
-  .then(({ url }) => {
-    console.log(`🚀  Server ready at ${url}`);
-  })
-  .catch((err) => {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-    console.log(`Error has occured!: ${err}`);
+  return readFile(join(process.cwd(), ...path), {
+    encoding: 'utf-8',
   });
+};
+
+const runServer = async (typeDefs: string) => {
+  const server = new ApolloServer({ typeDefs, resolvers, cache: 'bounded' });
+
+  return server.listen().then(({ url }) => url);
+};
+
+const main = async () => {
+  const schema = await loadSchema();
+
+  runServer(schema)
+    .then((url) => {
+      console.log(`🚀  Server ready at ${url}`);
+    })
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
+    .finally(async () => disconnectFromDb());
+};
+
+main().catch((err) => {
+  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  console.log(`Error has occured!: ${err}`);
+});

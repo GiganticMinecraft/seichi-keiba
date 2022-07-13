@@ -2,7 +2,6 @@
   "name": "backend",
   "version": "0.1.0",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "dev": "nodemon",
     "build": "tsc -p tsconfig.json && yarn build:post",

@@ -1,8 +1,9 @@
-import { Nominal, assertNonBlankString } from '../nominal';
+import { assertFilledString } from "@/types/utils/filledString";
+import { Nominal } from "@/types/utils/nominal";
 
 export type JockeyName = Nominal<string, 'JockeyName'>;
 function assertJockeyName(v: unknown): asserts v is JockeyName {
-  assertNonBlankString(v);
+  assertFilledString(v);
 }
 export const asJockeyName = (v: unknown): JockeyName => {
   assertJockeyName(v);

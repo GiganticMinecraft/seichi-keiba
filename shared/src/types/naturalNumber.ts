@@ -1,5 +1,5 @@
-import { isNumber, assertNumber } from './utils/assertNumber';
-import { Nominal } from './utils/nominal';
+import { isNumber, assertNumber } from '@/types/utils/assertNumber';
+import { Nominal } from '@/types/utils/nominal';
 
 export type NaturalNumber = Nominal<number, 'NaturalNumber'>;
 

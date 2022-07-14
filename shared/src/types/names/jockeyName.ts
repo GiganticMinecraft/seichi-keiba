@@ -1,6 +1,6 @@
-import { Nonimal, assertNonBlankString } from '../nonimal';
+import { Nominal, assertNonBlankString } from '../nominal';
 
-export type JockeyName = Nonimal<string, 'JockeyName'>;
+export type JockeyName = Nominal<string, 'JockeyName'>;
 function assertJockeyName(v: unknown): asserts v is JockeyName {
   assertNonBlankString(v);
 }

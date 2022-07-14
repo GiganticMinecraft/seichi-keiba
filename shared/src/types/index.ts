@@ -1,4 +1,4 @@
 export * from './dateString';
 export * from './naturalNumber';
-export * from './nonimal';
+export * from './nominal';
 export * from './names';

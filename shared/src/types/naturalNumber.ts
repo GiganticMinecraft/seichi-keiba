@@ -1,6 +1,6 @@
-import { Nonimal, isNumber, assertNumber } from './nonimal';
+import { Nominal, isNumber, assertNumber } from './nominal';
 
-export type NaturalNumber = Nonimal<number, 'NaturalNumber'>;
+export type NaturalNumber = Nominal<number, 'NaturalNumber'>;
 const isNaturalNumber = (v: unknown): v is number => isNumber(v) && v > 0;
 function assertNaturalNumber(v: unknown): asserts v is NaturalNumber {
   assertNumber(v);

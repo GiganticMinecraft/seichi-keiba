@@ -1,6 +1,6 @@
-import { Nonimal, assertNonBlankString } from './nonimal';
+import { Nominal, assertNonBlankString } from './nominal';
 
-export type DateString = Nonimal<string, 'Date'>;
+export type DateString = Nominal<string, 'Date'>;
 function assertDateString(v: unknown): asserts v is DateString {
   assertNonBlankString(v);
 }

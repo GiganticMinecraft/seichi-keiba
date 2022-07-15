@@ -45,8 +45,8 @@ model HorseEntry {
   horseId  String  @db.ObjectId
   jockey   Jockey  @relation(fields: [jockeyId], references: [id])
   jockeyId String  @db.ObjectId
-  Race     Race?   @relation(fields: [raceId], references: [id])
-  raceId   String? @db.ObjectId
+  Race     Race   @relation(fields: [raceId], references: [id])
+  raceId   String @db.ObjectId
 }
 
 model Race {

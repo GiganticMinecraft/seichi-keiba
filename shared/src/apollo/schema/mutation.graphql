@@ -60,17 +60,17 @@ input UpdateJockeyInput {
 type Mutation {
   createNews(input: CreateNewsInput!): News!
   updateNews(id: ID!, input: UpdateNewsInput!): News!
-  deleteNews(id: ID!): Boolean!
+  deleteNews(id: ID!): ID!
 
   createRace(input: CreateRaceInput!): Race!
   updateRace(id: ID!, input: UpdateRaceInput): Race!
-  deleteRace(id: ID!): Boolean!
+  deleteRace(id: ID!): ID!
 
   createHorse(input: CreateHorseInput!): Horse!
   updateHorse(id: ID!, input: UpdateHorseInput!): Horse!
-  deleteHorse(id: ID!): Boolean!
+  deleteHorse(id: ID!): ID!
 
   createJockey(input: CreateJockeyInput!): Jockey!
   updateJockey(id: ID!, input: UpdateJockeyInput!): Jockey!
-  deleteJockey(id: ID!): Boolean!
+  deleteJockey(id: ID!): ID!
 }

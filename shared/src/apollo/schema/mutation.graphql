@@ -6,7 +6,7 @@ input CreateNewsInput {
 
 input UpdateNewsInput {
   title: NewsTitle
-  contents: [String]
+  contents: [String!]
   closed_at: Date
 }
 

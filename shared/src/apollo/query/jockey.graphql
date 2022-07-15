@@ -3,8 +3,8 @@ fragment jockeyDefaultFields on Jockey {
   name
 }
 
-query getAllJockeys($pagination: Pagination) {
-  all_jockeys(pagination: $pagination) {
+query getAllJockeys($pagination: Pagination!) {
+  allJockeys(pagination: $pagination) {
     ...jockeyDefaultFields
   }
 }
@@ -16,17 +16,17 @@ query getJockeyById($id: ID!) {
 }
 
 mutation createJockey($input: CreateJockeyInput!) {
-  create_jockey(input: $input) {
+  createJockey(input: $input) {
     ...jockeyDefaultFields
   }
 }
 
 mutation updateJockey($id: ID!, $input: UpdateJockeyInput!) {
-  update_jockey(id: $id, input: $input) {
+  updateJockey(id: $id, input: $input) {
     ...jockeyDefaultFields
   }
 }
 
 mutation deleteJockey($id: ID!) {
-  delete_jockey(id: $id)
+  deleteJockey(id: $id)
 }

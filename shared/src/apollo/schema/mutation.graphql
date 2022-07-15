@@ -58,19 +58,19 @@ input UpdateJockeyInput {
 }
 
 type Mutation {
-  create_news(input: CreateNewsInput!): News!
-  update_news(id: ID!, input: UpdateNewsInput!): News!
-  delete_news(id: ID!): Boolean!
+  createNews(input: CreateNewsInput!): News!
+  updateNews(id: ID!, input: UpdateNewsInput!): News!
+  deleteNews(id: ID!): Boolean!
 
-  create_race(input: CreateRaceInput!): Race!
-  update_race(id: ID!, input: UpdateRaceInput): Race!
-  delete_race(id: ID!): Boolean!
+  createRace(input: CreateRaceInput!): Race!
+  updateRace(id: ID!, input: UpdateRaceInput): Race!
+  deleteRace(id: ID!): Boolean!
 
-  create_horse(input: CreateHorseInput!): Horse!
-  update_horse(id: ID!, input: UpdateHorseInput!): Horse!
-  delete_horse(id: ID!): Boolean!
+  createHorse(input: CreateHorseInput!): Horse!
+  updateHorse(id: ID!, input: UpdateHorseInput!): Horse!
+  deleteHorse(id: ID!): Boolean!
 
-  create_jockey(input: CreateJockeyInput!): Jockey!
-  update_jockey(id: ID!, input: UpdateJockeyInput!): Jockey!
-  delete_jockey(id: ID!): Boolean!
+  createJockey(input: CreateJockeyInput!): Jockey!
+  updateJockey(id: ID!, input: UpdateJockeyInput!): Jockey!
+  deleteJockey(id: ID!): Boolean!
 }

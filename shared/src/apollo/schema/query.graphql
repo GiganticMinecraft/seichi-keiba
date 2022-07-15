@@ -1,20 +1,20 @@
 input Pagination {
-  offset: Int
   limit: Int
+  offset: Int
 }
 
 type Query {
   news(id: ID!): News
-  all_news(pagination: Pagination): [News!]!
-  all_valid_news(pagination: Pagination): [News!]!
+  allNews(pagination: Pagination!): [News!]!
+  allValidNews(pagination: Pagination!): [News!]!
 
   race(id: ID!): Race
-  all_races(pagination: Pagination): [Race!]!
-  all_valid_races(pagination: Pagination): [Race!]!
+  allRaces(pagination: Pagination!): [Race!]!
+  allValidRaces(pagination: Pagination!): [Race!]!
 
   horse(id: ID!): Horse
-  all_horses(pagination: Pagination): [Horse!]!
+  allHorses(pagination: Pagination!): [Horse!]!
 
   jockey(id: ID!): Jockey
-  all_jockeys(pagination: Pagination): [Jockey!]!
+  allJockeys(pagination: Pagination!): [Jockey!]!
 }

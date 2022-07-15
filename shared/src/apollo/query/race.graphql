@@ -5,14 +5,14 @@ fragment raceDefaultFields on Race {
   distance
 }
 
-query getAllRaces($pagination: Pagination) {
-  all_races(pagination: $pagination) {
+query getAllRaces($pagination: Pagination!) {
+  allRaces(pagination: $pagination) {
     ...raceDefaultFields
   }
 }
 
-query getAllValidRaces($pagination: Pagination) {
-  all_races(pagination: $pagination) {
+query getAllValidRaces($pagination: Pagination!) {
+  allValidRaces(pagination: $pagination) {
     ...raceDefaultFields
     date
     order
@@ -28,7 +28,7 @@ query getRaceById($id: ID!) {
 }
 
 mutation createRace($input: CreateRaceInput!) {
-  create_race(input: $input) {
+  createRace(input: $input) {
     ...raceDefaultFields
     date
     order
@@ -36,7 +36,7 @@ mutation createRace($input: CreateRaceInput!) {
 }
 
 mutation updateRace($id: ID!, $input: UpdateRaceInput!) {
-  update_race(id: $id, input: $input) {
+  updateRace(id: $id, input: $input) {
     ...raceDefaultFields
     date
     order
@@ -44,5 +44,5 @@ mutation updateRace($id: ID!, $input: UpdateRaceInput!) {
 }
 
 mutation deleteRace($id: ID!) {
-  delete_race(id: $id)
+  deleteRace(id: $id)
 }

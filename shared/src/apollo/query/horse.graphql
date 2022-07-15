@@ -3,8 +3,8 @@ fragment horseDefaultFields on Horse {
   name
 }
 
-query getAllHorses($pagination: Pagination) {
-  all_horses(pagination: $pagination) {
+query getAllHorses($pagination: Pagination!) {
+  allHorses(pagination: $pagination) {
     ...horseDefaultFields
   }
 }
@@ -16,17 +16,17 @@ query getHorseById($id: ID!) {
 }
 
 mutation createHorse($input: CreateHorseInput!) {
-  create_horse(input: $input) {
+  createHorse(input: $input) {
     ...horseDefaultFields
   }
 }
 
 mutation updateHorse($id: ID!, $input: UpdateHorseInput!) {
-  update_horse(id: $id, input: $input) {
+  updateHorse(id: $id, input: $input) {
     ...horseDefaultFields
   }
 }
 
 mutation deleteHorse($id: ID!) {
-  delete_horse(id: $id)
+  deleteHorse(id: $id)
 }

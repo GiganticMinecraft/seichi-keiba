@@ -1,48 +1,13 @@
-import {
-  asDateString,
-  asNewsTitle,
-} from '@giganticminecraft/seichi-keiba-shared';
 import { ApolloServer } from 'apollo-server';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 
-import type { News, Resolvers } from '@/gen-apollo';
+import type { Resolvers } from '@/gen-apollo';
 import { connectToDb, disconnectFromDb } from '@/prisma';
-
-// スキーマと実際のデータ構造の紐付けを resolvers で行う
-const news: News[] = [
-  {
-    id: '1',
-    title: asNewsTitle('title undefined'),
-    contents: ['contents'],
-    created_at: asDateString('2022/07/01'),
-    closed_at: undefined,
-  },
-  {
-    id: '2',
-    title: asNewsTitle('title valid'),
-    contents: ['contents'],
-    created_at: asDateString('2022/07/01'),
-    closed_at: asDateString('2022-07-10'),
-  },
-  {
-    id: '3',
-    title: asNewsTitle('title invalid'),
-    contents: ['contents'],
-    created_at: asDateString('2022/07/01'),
-    closed_at: asDateString('2022-07-01'),
-  },
-];
+import * as query from '@/resolvers/query';
 
 const resolvers: Resolvers = {
-  Query: {
-    all_news: () => news,
-    all_valid_news: () =>
-      news.filter(
-        (value) => !value.closed_at || new Date(value.closed_at) >= new Date(),
-      ),
-    news: (_, { id }) => news.find((v) => v.id === id) ?? null,
-  },
+  Query: query,
 };
 
 const loadSchema = async () => {

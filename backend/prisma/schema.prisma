@@ -38,13 +38,13 @@ enum CourseType {
 }
 
 model HorseEntry {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  id       String @id @default(auto()) @map("_id") @db.ObjectId
   frame    Int
   number   Int
-  horse    Horse   @relation(fields: [horseId], references: [id])
-  horseId  String  @db.ObjectId
-  jockey   Jockey  @relation(fields: [jockeyId], references: [id])
-  jockeyId String  @db.ObjectId
+  horse    Horse  @relation(fields: [horseId], references: [id])
+  horseId  String @db.ObjectId
+  jockey   Jockey @relation(fields: [jockeyId], references: [id])
+  jockeyId String @db.ObjectId
   Race     Race   @relation(fields: [raceId], references: [id])
   raceId   String @db.ObjectId
 }

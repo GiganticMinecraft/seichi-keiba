@@ -20,6 +20,7 @@ input CreateHorseEntry {
 input UpdateHorseEntryInput {
   frame: NaturalNumber
   number: NaturalNumber
+  horse_id: ID
   jockey_id: ID
 }
 

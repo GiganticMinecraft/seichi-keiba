@@ -19,11 +19,11 @@ input CreateHorseEntryInput {
 }
 
 input UpdateHorseEntryInput {
-  frame: NaturalNumber!
-  number: NaturalNumber!
-  horse_id: ID!
-  jockey_id: ID!
-  race_id: ID!
+  frame: NaturalNumber
+  number: NaturalNumber
+  horse_id: ID
+  jockey_id: ID
+  race_id: ID
 }
 
 input CreateRaceInput {

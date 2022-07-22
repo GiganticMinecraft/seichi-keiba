@@ -6,28 +6,30 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
 model News {
-  id              String    @id @default(auto()) @map("_id") @db.ObjectId
-  title           String    @unique @db.String
-  contents        String[]
-  closed_at       DateTime? @db.Timestamp
-  created_at      DateTime  @default(now()) @db.Timestamp
-  last_updated_at DateTime  @updatedAt @db.Timestamp
+  id              String    @id
+  title           String    @unique
+  contents        String
+  closed_at       DateTime?
+  created_at      DateTime  @default(now())
+  last_updated_at DateTime  @updatedAt
+
+  @@unique([title, contents])
 }
 
 model Horse {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  name          String       @unique @db.String
+  id            String       @id
+  name          String       @unique
   horse_entries HorseEntry[]
 }
 
 model Jockey {
-  id            String       @id @default(auto()) @map("_id") @db.ObjectId
-  name          String       @unique @db.String
+  id            String       @id
+  name          String       @unique
   horse_entries HorseEntry[]
 }
 
@@ -38,25 +40,31 @@ enum CourseType {
 }
 
 model HorseEntry {
-  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  id        String @id
   frame     Int
   number    Int
   horse     Horse  @relation(fields: [horse_id], references: [id])
-  horse_id  String @db.ObjectId
+  horse_id  String
   jockey    Jockey @relation(fields: [jockey_id], references: [id])
-  jockey_id String @db.ObjectId
+  jockey_id String
   race      Race   @relation(fields: [race_id], references: [id])
-  race_id   String @db.ObjectId
+  race_id   String
+
+  @@unique([race_id, frame, number])
+  @@unique([race_id, horse_id])
+  @@unique([race_id, jockey_id])
 }
 
 model Race {
-  id       String       @id @default(auto()) @map("_id") @db.ObjectId
-  name     String       @unique @db.String
-  date     DateTime     @db.Timestamp
+  id       String       @id
+  name     String       @unique
+  date     DateTime
   order    Int
   course   CourseType
   distance Int
   horses   HorseEntry[]
+
+  @@unique([date, order])
 }
 
 enum TicketType {
@@ -67,6 +75,6 @@ enum TicketType {
 }
 
 model BettingTicket {
-  id   String     @id @default(auto()) @map("_id") @db.ObjectId
+  id   String     @id @unique
   type TicketType
 }

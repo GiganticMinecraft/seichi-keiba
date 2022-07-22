@@ -1,41 +1,16 @@
 # dev用
 version: '3.3'
 volumes:
-  mongo-primary:
-  mongo-secondary:
+  mariadb:
 services:
-  mongodb-primary:
-    container_name: mongodb-primary
-    image: mongo:5.0
-    command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
-    expose:
-      - 27017
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.6
     ports:
-      - 27018:27017
+      - 3306:3306
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: keiba
+      TZ: "Asia/Tokyo"
     volumes:
-      - mongo-primary:/data/db
-      - ./init:/docker-entrypoint-initdb.d:ro
-      - ./mongo-keyfile:/etc/mongod-keyfile:ro
-  mongodb-secondary:
-    container_name: mongodb-secondary
-    image: mongo:5.0
-    command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
-    expose:
-      - 27017
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: admin
-    volumes:
-      - mongo-secondary:/data/db
-      - ./mongo-keyfile:/etc/mongod-keyfile:ro
-  mongodb-arbiter:
-    container_name: mongodb-arbiter
-    image: mongo:5.0
-    command: --replSet rs0 --auth --keyFile /etc/mongod-keyfile
-    expose:
-      - 27017
-    volumes:
-      - ./mongo-keyfile:/etc/mongod-keyfile:ro
+      - mariadb:/var/lib/mysql

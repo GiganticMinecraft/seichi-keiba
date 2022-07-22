@@ -145,15 +145,14 @@ const addNews = async () => {
 const seed = async () => {
   await connectToDb();
 
-  const horses = await addHorses();
-  const jockeys = await addJockeys();
-  const races = await addRaces();
-  await addHorseEntries(
-    horses.map((v) => v.id),
-    jockeys.map((v) => v.id),
-    races.map((v) => v.id),
+  await Promise.all([addHorses(), addJockeys(), addRaces(), addNews()]).then(
+    async ([horses, jockeys, races]) =>
+      addHorseEntries(
+        horses.map((v) => v.id),
+        jockeys.map((v) => v.id),
+        races.map((v) => v.id),
+      ),
   );
-  await addNews();
 };
 
 seed()

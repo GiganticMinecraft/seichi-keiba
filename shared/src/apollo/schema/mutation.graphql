@@ -66,7 +66,7 @@ type Mutation {
   deleteNews(id: ID!): ID!
 
   createRace(input: CreateRaceInput!): Race!
-  updateRace(id: ID!, input: UpdateRaceInput!): Race
+  updateRace(id: ID!, input: UpdateRaceInput!): Race!
   deleteRace(id: ID!): ID!
 
   createHorse(input: CreateHorseInput!): Horse!

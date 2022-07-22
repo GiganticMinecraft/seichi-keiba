@@ -20,15 +20,15 @@ model News {
 }
 
 model Horse {
-  id         String       @id @default(auto()) @map("_id") @db.ObjectId
-  name       String       @unique @db.String
-  HorseEntry HorseEntry[]
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String       @unique @db.String
+  horse_entries HorseEntry[]
 }
 
 model Jockey {
-  id         String       @id @default(auto()) @map("_id") @db.ObjectId
-  name       String       @unique @db.String
-  HorseEntry HorseEntry[]
+  id            String       @id @default(auto()) @map("_id") @db.ObjectId
+  name          String       @unique @db.String
+  horse_entries HorseEntry[]
 }
 
 enum CourseType {
@@ -38,15 +38,15 @@ enum CourseType {
 }
 
 model HorseEntry {
-  id       String @id @default(auto()) @map("_id") @db.ObjectId
-  frame    Int
-  number   Int
-  horse    Horse  @relation(fields: [horseId], references: [id])
-  horseId  String @db.ObjectId
-  jockey   Jockey @relation(fields: [jockeyId], references: [id])
-  jockeyId String @db.ObjectId
-  Race     Race   @relation(fields: [raceId], references: [id])
-  raceId   String @db.ObjectId
+  id        String @id @default(auto()) @map("_id") @db.ObjectId
+  frame     Int
+  number    Int
+  horse     Horse  @relation(fields: [horse_id], references: [id])
+  horse_id  String @db.ObjectId
+  jockey    Jockey @relation(fields: [jockey_id], references: [id])
+  jockey_id String @db.ObjectId
+  race      Race   @relation(fields: [race_id], references: [id])
+  race_id   String @db.ObjectId
 }
 
 model Race {

@@ -1,3 +1,5 @@
+import { ulid } from 'ulid';
+
 import { MutationResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToRace } from '@/resolvers/converter';
@@ -5,7 +7,7 @@ import raceIncludeOptions from '@/resolvers/shared';
 
 const createRace: MutationResolvers['createRace'] = async (_, { input }) =>
   prisma.race
-    .create({ data: { ...input }, include: raceIncludeOptions })
+    .create({ data: { ...input, id: ulid() }, include: raceIncludeOptions })
     .then(convertToRace);
 
 // TODO: update HorseEntry

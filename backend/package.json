@@ -23,7 +23,8 @@
     "@prisma/client": "4.0.0",
     "apollo-server": "3.10.0",
     "graphql": "16.5.0",
-    "prisma": "4.0.0"
+    "prisma": "4.0.0",
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/eslint": "^8.4.5",

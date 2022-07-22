@@ -1,68 +1,27 @@
-import {
-  asHorseName,
-  asJockeyName,
-  asNaturalNumber,
-  asRaceName,
-  fromDate,
-} from '@giganticminecraft/seichi-keiba-shared';
-import { Horse, HorseEntry, Jockey, Race } from '@prisma/client';
-
 import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
-
-const convertToReturnValue = (
-  race: Race & {
-    horses: (HorseEntry & {
-      jockey: Jockey;
-      horse: Horse;
-    })[];
-  },
-) => ({
-  ...race,
-  name: asRaceName(race.name),
-  date: fromDate(race.date),
-  order: asNaturalNumber(race.order),
-  distance: asNaturalNumber(race.distance),
-  horses: race.horses.map((value) => ({
-    ...value,
-    frame: asNaturalNumber(value.frame),
-    number: asNaturalNumber(value.number),
-    horse: {
-      ...value.horse,
-      name: asHorseName(value.horse.name),
-    },
-    jockey: {
-      ...value.jockey,
-      name: asJockeyName(value.jockey.name),
-    },
-  })),
-});
-
-const includeOptions = {
-  horses: {
-    include: { jockey: true, horse: true },
-  },
-};
+import { convertToRace } from '@/resolvers/converter';
+import raceIncludeOptions from '@/resolvers/shared';
 
 const race: QueryResolvers['race'] = async (_, { id }) => {
   const found = await prisma.race.findUnique({
     where: { id },
-    include: includeOptions,
+    include: raceIncludeOptions,
   });
 
   if (!found) throw new Error('There is no Race you are looking for');
 
-  return convertToReturnValue(found);
+  return convertToRace(found);
 };
 
 const allRaces: QueryResolvers['allRaces'] = async (_, { pagination }) => {
   const foundList = await prisma.race.findMany({
     take: pagination.limit ?? defaultPagination.limit,
     skip: pagination.offset ?? defaultPagination.offset,
-    include: includeOptions,
+    include: raceIncludeOptions,
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToRace);
 };
 
 const allValidRaces: QueryResolvers['allValidRaces'] = async (
@@ -72,11 +31,11 @@ const allValidRaces: QueryResolvers['allValidRaces'] = async (
   const foundList = await prisma.race.findMany({
     take: pagination.limit ?? defaultPagination.limit,
     skip: pagination.offset ?? defaultPagination.offset,
-    include: includeOptions,
+    include: raceIncludeOptions,
     where: { date: { gte: new Date() } },
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToRace);
 };
 
 export { race, allRaces, allValidRaces };

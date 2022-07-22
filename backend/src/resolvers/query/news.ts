@@ -1,23 +1,13 @@
-import { asNewsTitle, fromDate } from '@giganticminecraft/seichi-keiba-shared';
-import { News } from '@prisma/client';
-
 import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
-
-const convertToReturnValue = (news: News) => ({
-  ...news,
-  title: asNewsTitle(news.title),
-  closed_at: news.closed_at ? fromDate(news.closed_at) : undefined,
-  created_at: fromDate(news.created_at),
-  last_updated_at: fromDate(news.last_updated_at),
-});
+import { convertToNews } from '@/resolvers/converter';
 
 const news: QueryResolvers['news'] = async (_, { id }) => {
   const found = await prisma.news.findUnique({ where: { id } });
 
   if (!found) throw new Error('There is no News you are looking for');
 
-  return convertToReturnValue(found);
+  return convertToNews(found);
 };
 
 const allNews: QueryResolvers['allNews'] = async (_, { pagination }) => {
@@ -26,7 +16,7 @@ const allNews: QueryResolvers['allNews'] = async (_, { pagination }) => {
     skip: pagination.offset ?? defaultPagination.offset,
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToNews);
 };
 
 const allValidNews: QueryResolvers['allValidNews'] = async (
@@ -50,7 +40,7 @@ const allValidNews: QueryResolvers['allValidNews'] = async (
     },
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToNews);
 };
 
 export { news, allNews, allValidNews };

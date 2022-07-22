@@ -1,20 +1,13 @@
-import { asJockeyName } from '@giganticminecraft/seichi-keiba-shared';
-import { Jockey } from '@prisma/client';
-
 import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
-
-const convertToReturnValue = (jockey: Jockey) => ({
-  ...jockey,
-  name: asJockeyName(jockey.name),
-});
+import { convertToJockey } from '@/resolvers/converter';
 
 const jockey: QueryResolvers['jockey'] = async (_, { id }) => {
   const found = await prisma.jockey.findUnique({ where: { id } });
 
   if (!found) throw new Error('There is no Jockey you are looking for');
 
-  return convertToReturnValue(found);
+  return convertToJockey(found);
 };
 
 const allJockeys: QueryResolvers['allJockeys'] = async (_, { pagination }) => {
@@ -23,7 +16,7 @@ const allJockeys: QueryResolvers['allJockeys'] = async (_, { pagination }) => {
     skip: pagination.offset ?? defaultPagination.offset,
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToJockey);
 };
 
 export { jockey, allJockeys };

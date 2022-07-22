@@ -1,20 +1,13 @@
-import { asHorseName } from '@giganticminecraft/seichi-keiba-shared';
-import { Horse } from '@prisma/client';
-
 import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
-
-const convertToReturnValue = (horse: Horse) => ({
-  ...horse,
-  name: asHorseName(horse.name),
-});
+import { convertToHorse } from '@/resolvers/converter';
 
 const horse: QueryResolvers['horse'] = async (_, { id }) => {
   const found = await prisma.horse.findUnique({ where: { id } });
 
   if (!found) throw new Error('There is no Horse you are looking for');
 
-  return convertToReturnValue(found);
+  return convertToHorse(found);
 };
 
 const allHorses: QueryResolvers['allHorses'] = async (_, { pagination }) => {
@@ -23,7 +16,7 @@ const allHorses: QueryResolvers['allHorses'] = async (_, { pagination }) => {
     skip: pagination.offset ?? defaultPagination.offset,
   });
 
-  return foundList.map(convertToReturnValue);
+  return foundList.map(convertToHorse);
 };
 
 export { horse, allHorses };

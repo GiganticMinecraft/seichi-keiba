@@ -35,6 +35,8 @@ input CreateRaceInput {
   horses: [CreateHorseEntryInput!]!
 }
 
+# TODO: UpdateHorseEntryはIDを受け取るだけにする
+# TODO: HorseEntryは別にCRUDを作る
 input UpdateRaceInput {
   name: RaceName
   date: Date

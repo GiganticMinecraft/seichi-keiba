@@ -2,13 +2,9 @@ import { ApolloServer } from 'apollo-server';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
 
-import type { Resolvers } from '@/gen-apollo';
+import { Resolvers } from '@/gen-apollo';
 import { connectToDb, disconnectFromDb } from '@/prisma';
-import * as query from '@/resolvers/query';
-
-const resolvers: Resolvers = {
-  Query: query,
-};
+import { query, mutation } from '@/resolvers';
 
 const loadSchema = async () => {
   const SCHEMA_FILE = 'schema.graphql';
@@ -21,6 +17,8 @@ const loadSchema = async () => {
     encoding: 'utf-8',
   });
 };
+
+const resolvers: Resolvers = { Query: query, Mutation: mutation };
 
 const runServer = async (typeDefs: string) => {
   await connectToDb();

@@ -1,9 +1,11 @@
+import { ulid } from 'ulid';
+
 import { MutationResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToHorse } from '@/resolvers/converter';
 
 const createHorse: MutationResolvers['createHorse'] = async (_, { input }) =>
-  prisma.horse.create({ data: { ...input } }).then(convertToHorse);
+  prisma.horse.create({ data: { ...input, id: ulid() } }).then(convertToHorse);
 
 const updateHorse: MutationResolvers['updateHorse'] = async (
   _,

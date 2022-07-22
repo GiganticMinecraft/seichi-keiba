@@ -1,9 +1,11 @@
+import { ulid } from 'ulid';
+
 import { MutationResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToNews } from '@/resolvers/converter';
 
 const createNews: MutationResolvers['createNews'] = async (_, { input }) =>
-  prisma.news.create({ data: { ...input } }).then(convertToNews);
+  prisma.news.create({ data: { ...input, id: ulid() } }).then(convertToNews);
 
 const updateNews: MutationResolvers['updateNews'] = async (
   _,

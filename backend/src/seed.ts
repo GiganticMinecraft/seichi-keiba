@@ -1,4 +1,5 @@
 import { CourseType } from '@prisma/client';
+import { ulid } from 'ulid';
 
 import { connectToDb, disconnectFromDb, prisma } from '@/prisma';
 
@@ -14,7 +15,7 @@ const addHorses = async () => {
   return Promise.all(
     data.map(({ name }) =>
       prisma.horse.upsert({
-        create: { name },
+        create: { id: ulid(), name },
         update: {},
         where: { name },
       }),
@@ -34,7 +35,7 @@ const addJockeys = async () => {
   return Promise.all(
     data.map(({ name }) =>
       prisma.jockey.upsert({
-        create: { name },
+        create: { id: ulid(), name },
         update: {},
         where: { name },
       }),
@@ -70,7 +71,7 @@ const addRaces = async () => {
   return Promise.all(
     data.map((values) =>
       prisma.race.upsert({
-        create: { ...values },
+        create: { ...values, id: ulid() },
         update: {},
         where: { name: values.name },
       }),
@@ -87,11 +88,11 @@ const addHorseEntries = async (
     list[Math.floor(Math.random() * list.length)];
 
   const data = [
-    { frame: 1, number: 1, id: '62d1086587963a8b53347236' },
-    { frame: 2, number: 2, id: '62d1086587963a8b53347238' },
-    { frame: 3, number: 3, id: '62d1086587963a8b53347235' },
-    { frame: 4, number: 4, id: '62d1086587963a8b53347234' },
-    { frame: 5, number: 5, id: '62d1086587963a8b53347237' },
+    { frame: 1, number: 1, id: '01G8K01H6T72HJ9E6Z4PM7HZWJ' },
+    { frame: 2, number: 2, id: '01G8K01H6VA36WZGA797YBVWS8' },
+    { frame: 3, number: 3, id: '01G8JZVB9XEWZCBTSXKGS8VWM8' },
+    { frame: 4, number: 4, id: '01G8JZVB9YTG02BJCQN82CHW3W' },
+    { frame: 5, number: 5, id: '01G8JZVB9ZH9HTZ7KJNWHDY7S0' },
   ];
 
   return Promise.all(
@@ -132,11 +133,11 @@ const addNews = async () => {
   ];
 
   return Promise.all(
-    data.map((values) =>
+    data.map((value) =>
       prisma.news.upsert({
-        create: { ...values },
+        create: { ...value, id: ulid(), contents: value.contents.join('\n') },
         update: {},
-        where: { title: values.title },
+        where: { title: value.title },
       }),
     ),
   );

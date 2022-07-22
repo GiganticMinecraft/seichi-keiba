@@ -1,9 +1,13 @@
+import { ulid } from 'ulid';
+
 import { MutationResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToJockey } from '@/resolvers/converter';
 
 const createJockey: MutationResolvers['createJockey'] = async (_, { input }) =>
-  prisma.jockey.create({ data: { ...input } }).then(convertToJockey);
+  prisma.jockey
+    .create({ data: { ...input, id: ulid() } })
+    .then(convertToJockey);
 
 const updateJockey: MutationResolvers['updateJockey'] = async (
   _,

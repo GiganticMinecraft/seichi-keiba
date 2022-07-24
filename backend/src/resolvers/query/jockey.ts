@@ -2,13 +2,8 @@ import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToJockey } from '@/resolvers/converter';
 
-const jockey: QueryResolvers['jockey'] = async (_, { id }) => {
-  const found = await prisma.jockey.findUnique({ where: { id } });
-
-  if (!found) throw new Error('There is no Jockey you are looking for');
-
-  return convertToJockey(found);
-};
+const jockey: QueryResolvers['jockey'] = async (_, { id }) =>
+  prisma.jockey.findUniqueOrThrow({ where: { id } }).then(convertToJockey);
 
 const allJockeys: QueryResolvers['allJockeys'] = async (_, { pagination }) => {
   const foundList = await prisma.jockey.findMany({

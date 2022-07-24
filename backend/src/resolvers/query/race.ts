@@ -3,16 +3,13 @@ import { prisma } from '@/prisma';
 import { convertToRace } from '@/resolvers/converter';
 import raceIncludeOptions from '@/resolvers/shared';
 
-const race: QueryResolvers['race'] = async (_, { id }) => {
-  const found = await prisma.race.findUnique({
-    where: { id },
-    include: raceIncludeOptions,
-  });
-
-  if (!found) throw new Error('There is no Race you are looking for');
-
-  return convertToRace(found);
-};
+const race: QueryResolvers['race'] = async (_, { id }) =>
+  prisma.race
+    .findUniqueOrThrow({
+      where: { id },
+      include: raceIncludeOptions,
+    })
+    .then(convertToRace);
 
 const allRaces: QueryResolvers['allRaces'] = async (_, { pagination }) => {
   const foundList = await prisma.race.findMany({

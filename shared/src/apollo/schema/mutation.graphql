@@ -35,14 +35,18 @@ input CreateRaceInput {
   horses: [CreateHorseEntryInput!]!
 }
 
-# TODO: UpdateHorseEntryはIDを受け取るだけにする
-# TODO: HorseEntryは別にCRUDを作る
+input UpdateHorseEntryTuple {
+  id: ID!
+  input: UpdateHorseEntryInput!
+}
+
 input UpdateRaceInput {
   name: RaceName
   date: Date
   order: NaturalNumber
   course: CourseType
   distance: NaturalNumber
+  horses: [UpdateHorseEntryTuple!]
 }
 
 input CreateHorseInput {

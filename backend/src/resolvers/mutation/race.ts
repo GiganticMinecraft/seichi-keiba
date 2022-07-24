@@ -7,10 +7,24 @@ import raceIncludeOptions from '@/resolvers/shared';
 
 const createRace: MutationResolvers['createRace'] = async (_, { input }) =>
   prisma.race
-    .create({ data: { ...input, id: ulid() }, include: raceIncludeOptions })
+    .create({
+      data: {
+        ...input,
+        id: ulid(),
+        horses: {
+          createMany: {
+            // eslint-disable-next-line camelcase
+            data: input.horses.map(({ race_id, ...others }) => ({
+              ...others,
+              id: ulid(),
+            })),
+          },
+        },
+      },
+      include: raceIncludeOptions,
+    })
     .then(convertToRace);
 
-// TODO: update HorseEntry
 const updateRace: MutationResolvers['updateRace'] = async (
   _,
   { id, input },
@@ -25,6 +39,20 @@ const updateRace: MutationResolvers['updateRace'] = async (
         course: input.course || undefined,
         distance: input.distance || undefined,
         order: input.order || undefined,
+        horses: input.horses
+          ? {
+              update: input.horses.map((tuple) => ({
+                where: { id: tuple.id },
+                data: {
+                  frame: tuple.input.frame || undefined,
+                  number: tuple.input.number || undefined,
+                  horse_id: tuple.input.horse_id || undefined,
+                  jockey_id: tuple.input.jockey_id || undefined,
+                  race_id: tuple.input.race_id || undefined,
+                },
+              })),
+            }
+          : undefined,
       },
       where: { id },
       include: {

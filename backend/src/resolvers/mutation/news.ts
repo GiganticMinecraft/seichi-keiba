@@ -18,8 +18,7 @@ const updateNews: MutationResolvers['updateNews'] = async (
       data: {
         title: input.title || undefined,
         contents: input.contents || undefined,
-        // TODO: 指定しなかったのか、わざとnullにするのか
-        closed_at: input.closed_at || undefined,
+        closed_at: input.closed_at,
       },
       where: { id },
     })

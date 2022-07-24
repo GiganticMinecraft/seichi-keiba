@@ -3,6 +3,7 @@ import { ulid } from 'ulid';
 import { MutationResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToHorseEntry } from '@/resolvers/converter';
+import { generateUpdateHorseEntryData } from '@/resolvers/shared';
 
 const createHorseEntry: MutationResolvers['createHorseEntry'] = async (
   _,
@@ -31,13 +32,7 @@ const updateHorseEntry: MutationResolvers['updateHorseEntry'] = async (
 
   return prisma.horseEntry
     .update({
-      data: {
-        frame: input.frame || undefined,
-        number: input.number || undefined,
-        horse_id: input.horse_id || undefined,
-        jockey_id: input.jockey_id || undefined,
-        race_id: input.race_id || undefined,
-      },
+      data: generateUpdateHorseEntryData(input),
       where: { id },
       include: { horse: true, jockey: true },
     })

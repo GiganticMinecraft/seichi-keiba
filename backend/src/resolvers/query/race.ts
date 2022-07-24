@@ -1,7 +1,7 @@
 import { defaultPagination, QueryResolvers } from '@/gen-apollo';
 import { prisma } from '@/prisma';
 import { convertToRace } from '@/resolvers/converter';
-import raceIncludeOptions from '@/resolvers/shared';
+import { raceIncludeOptions } from '@/resolvers/shared';
 
 // TODO: includeしないパターンも
 const race: QueryResolvers['race'] = async (_, { id }) =>

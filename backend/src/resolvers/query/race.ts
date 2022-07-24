@@ -3,6 +3,7 @@ import { prisma } from '@/prisma';
 import { convertToRace } from '@/resolvers/converter';
 import raceIncludeOptions from '@/resolvers/shared';
 
+// TODO: includeしないパターンも
 const race: QueryResolvers['race'] = async (_, { id }) =>
   prisma.race
     .findUniqueOrThrow({

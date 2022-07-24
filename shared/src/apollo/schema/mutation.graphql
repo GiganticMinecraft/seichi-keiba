@@ -11,9 +11,9 @@ input UpdateNewsInput {
 }
 
 input CreateHorseEntryInput {
-  horse_id: ID!
   frame: NaturalNumber!
   number: NaturalNumber!
+  horse_id: ID!
   jockey_id: ID!
   race_id: ID!
 }
@@ -43,7 +43,6 @@ input UpdateRaceInput {
   order: NaturalNumber
   course: CourseType
   distance: NaturalNumber
-  horses: [UpdateHorseEntryInput!]
 }
 
 input CreateHorseInput {
@@ -70,6 +69,10 @@ type Mutation {
   createRace(input: CreateRaceInput!): Race!
   updateRace(id: ID!, input: UpdateRaceInput!): Race!
   deleteRace(id: ID!): ID!
+
+  createHorseEntry(input: CreateHorseEntryInput!): HorseEntry!
+  updateHorseEntry(id: ID!, input: UpdateHorseEntryInput!): HorseEntry!
+  deleteHorseEntry(id: ID!): ID!
 
   createHorse(input: CreateHorseInput!): Horse!
   updateHorse(id: ID!, input: UpdateHorseInput!): Horse!

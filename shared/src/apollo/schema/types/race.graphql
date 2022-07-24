@@ -9,9 +9,9 @@ enum CourseType {
 
 type HorseEntry {
   id: ID!
-  horse: Horse!
   frame: NaturalNumber!
   number: NaturalNumber!
+  horse: Horse!
   jockey: Jockey!
 }
 

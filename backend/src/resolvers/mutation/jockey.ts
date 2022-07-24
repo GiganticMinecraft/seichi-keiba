@@ -19,7 +19,7 @@ const updateJockey: MutationResolvers['updateJockey'] = async (
 
   return prisma.jockey
     .update({
-      data: { name: input.name ?? jockey.name },
+      data: { name: input.name || undefined },
       where: { id },
     })
     .then(convertToJockey);

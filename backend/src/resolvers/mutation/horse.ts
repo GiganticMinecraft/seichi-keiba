@@ -17,7 +17,7 @@ const updateHorse: MutationResolvers['updateHorse'] = async (
 
   return prisma.horse
     .update({
-      data: { name: input.name ?? horse.name },
+      data: { name: input.name || undefined },
       where: { id },
     })
     .then(convertToHorse);

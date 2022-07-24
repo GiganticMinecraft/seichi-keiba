@@ -18,9 +18,10 @@ const updateNews: MutationResolvers['updateNews'] = async (
   return prisma.news
     .update({
       data: {
-        title: input.title ?? news.title,
-        contents: input.contents ?? news.contents,
-        closed_at: input.closed_at,
+        title: input.title || undefined,
+        contents: input.contents || undefined,
+        // TODO: 指定しなかったのか、わざとnullにするのか
+        closed_at: input.closed_at || undefined,
       },
       where: { id },
     })

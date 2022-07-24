@@ -25,11 +25,11 @@ const updateRace: MutationResolvers['updateRace'] = async (
   return prisma.race
     .update({
       data: {
-        name: input.name ?? race.name,
-        date: input.date ?? race.date,
-        course: input.course ?? race.course,
-        distance: input.distance ?? race.distance,
-        order: input.order ?? race.order,
+        name: input.name || undefined,
+        date: input.date || undefined,
+        course: input.course || undefined,
+        distance: input.distance || undefined,
+        order: input.order || undefined,
       },
       where: { id },
     })

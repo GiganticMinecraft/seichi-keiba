@@ -55,11 +55,7 @@ const updateRace: MutationResolvers['updateRace'] = async (
           : undefined,
       },
       where: { id },
-      include: {
-        horses: {
-          include: { jockey: true, horse: true },
-        },
-      },
+      include: raceIncludeOptions,
     })
     .then(convertToRace);
 };

@@ -13,9 +13,7 @@ const updateJockey: MutationResolvers['updateJockey'] = async (
   _,
   { id, input },
 ) => {
-  const jockey = await prisma.jockey.findUnique({ where: { id } });
-
-  if (!jockey) throw new Error('There is no Jockey you want to update');
+  await prisma.jockey.findUniqueOrThrow({ where: { id } });
 
   return prisma.jockey
     .update({

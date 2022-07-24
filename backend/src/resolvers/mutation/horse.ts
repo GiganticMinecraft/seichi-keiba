@@ -11,9 +11,7 @@ const updateHorse: MutationResolvers['updateHorse'] = async (
   _,
   { id, input },
 ) => {
-  const horse = await prisma.horse.findUnique({ where: { id } });
-
-  if (!horse) throw new Error('There is no Horse you want to update');
+  await prisma.horse.findUniqueOrThrow({ where: { id } });
 
   return prisma.horse
     .update({

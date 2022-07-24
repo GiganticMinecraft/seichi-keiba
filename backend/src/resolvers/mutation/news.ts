@@ -11,9 +11,7 @@ const updateNews: MutationResolvers['updateNews'] = async (
   _,
   { id, input },
 ) => {
-  const news = await prisma.news.findUnique({ where: { id } });
-
-  if (!news) throw new Error('There is no News you want to update');
+  await prisma.news.findUniqueOrThrow({ where: { id } });
 
   return prisma.news
     .update({

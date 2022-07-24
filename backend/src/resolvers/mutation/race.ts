@@ -15,12 +15,7 @@ const updateRace: MutationResolvers['updateRace'] = async (
   _,
   { id, input },
 ) => {
-  const race = await prisma.race.findUnique({
-    where: { id },
-    include: raceIncludeOptions,
-  });
-
-  if (!race) throw new Error('There is no Race you want to update');
+  await prisma.race.findUniqueOrThrow({ where: { id } });
 
   return prisma.race
     .update({
@@ -32,8 +27,12 @@ const updateRace: MutationResolvers['updateRace'] = async (
         order: input.order || undefined,
       },
       where: { id },
+      include: {
+        horses: {
+          include: { jockey: true, horse: true },
+        },
+      },
     })
-    .then((value) => ({ ...value, horses: race.horses }))
     .then(convertToRace);
 };
 

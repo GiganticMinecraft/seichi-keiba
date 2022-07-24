@@ -26,9 +26,9 @@ const convertToNews = (news: News) => ({
   last_updated_at: fromDate(news.last_updated_at),
 });
 
-const convertToHorseEntry = (
-  entry: HorseEntry & { jockey: Jockey; horse: Horse },
-) => ({
+type FullHorseEntry = HorseEntry & { jockey: Jockey; horse: Horse };
+
+const convertToHorseEntry = (entry: FullHorseEntry) => ({
   id: entry.id,
   frame: asNaturalNumber(entry.frame),
   number: asNaturalNumber(entry.number),
@@ -36,14 +36,7 @@ const convertToHorseEntry = (
   horse: convertToHorse(entry.horse),
 });
 
-const convertToRace = (
-  race: Race & {
-    horses: (HorseEntry & {
-      jockey: Jockey;
-      horse: Horse;
-    })[];
-  },
-) => ({
+const convertToRace = (race: Race & { horses: FullHorseEntry[] }) => ({
   ...race,
   name: asRaceName(race.name),
   date: fromDate(race.date),

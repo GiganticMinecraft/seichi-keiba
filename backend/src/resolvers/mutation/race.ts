@@ -65,9 +65,7 @@ const updateRace: MutationResolvers['updateRace'] = async (
 };
 
 const deleteRace: MutationResolvers['deleteRace'] = async (_, { id }) => {
-  const race = await prisma.race.findUnique({ where: { id } });
-
-  if (!race) throw new Error('There is no Race you want to delete');
+  await prisma.race.findUniqueOrThrow({ where: { id } });
 
   return prisma.race.delete({ where: { id } }).then((value) => value.id);
 };
